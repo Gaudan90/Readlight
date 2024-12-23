@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/app_colors.dart';
 
 class LoadingState {
   final double width;
@@ -10,8 +11,8 @@ class LoadingState {
   const LoadingState({
     this.width = 268.0,
     this.height = 8.0,
-    this.backgroundColor = const Color(0xFF4E4D4D),
-    this.progressColor = const Color(0xFFEAE5AB),
-    this.animationDuration = const Duration(seconds: 2),
+    this.backgroundColor = AppColors.secondaryBackground,
+    this.progressColor = AppColors.tertiaryContainer,
+    this.animationDuration = const Duration(seconds: 3),
   });
 }

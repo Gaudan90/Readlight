@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/loading_screen.dart';
+import 'theme/app_colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFF2D211B),
+        scaffoldBackgroundColor: AppColors.onSurfaceVariant,
       ),
       home: const LoadingScreen(),
     );
