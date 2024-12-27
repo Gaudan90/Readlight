@@ -9,9 +9,9 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed ?? () => print('Login button pressed!'),
+      onPressed: onPressed ?? () => 'Login button pressed!',
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.oliveGreen,
+        backgroundColor: AppColors.buttonPrimary,
         foregroundColor: AppColors.lightBeige,
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         textStyle: TextStyle(fontSize: 16),
@@ -29,9 +29,9 @@ class PlaceholderButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed ?? () => print('Placeholder button pressed!'),
+      onPressed: onPressed ?? () => 'Placeholder button pressed!',
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.lightBrown,
+        backgroundColor: AppColors.secondaryFixedDim,
         foregroundColor: AppColors.lightBeige,
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         textStyle: TextStyle(fontSize: 16),
