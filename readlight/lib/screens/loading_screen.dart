@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:readlight/screens/login_screen.dart';
 import '../components/loading_bar.dart';
 import '../states/loading_state.dart';
-import 'next_screen.dart';
 import '../theme/app_colors.dart';
 
 class LoadingScreen extends StatelessWidget {
@@ -29,7 +29,7 @@ class LoadingScreen extends StatelessWidget {
                 state: loadingState,
                 onLoadingComplete: () {
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const NextScreen()),
+                    MaterialPageRoute(builder: (context) => const LoginScreen()),
                   );
                 },
               ),
