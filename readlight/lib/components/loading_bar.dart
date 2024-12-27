@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'loading_controller.dart';
-import 'loading_state.dart';
+import '../controllers/loading_controller.dart';
+import '../states/loading_state.dart';
 
 class LoadingBar extends StatefulWidget {
   final LoadingState state;

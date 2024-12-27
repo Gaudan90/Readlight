@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../components/loading_bar.dart';
-import '../components/loading_state.dart';
+import '../states/loading_state.dart';
 import 'next_screen.dart';
 import '../theme/app_colors.dart';
 
