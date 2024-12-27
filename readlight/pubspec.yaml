@@ -93,8 +93,3 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
 
-  dependencies:
-  flutter:
-    sdk: flutter
-  flutter_svg: ^1.0.3 # Usa l'ultima versione disponibile
-

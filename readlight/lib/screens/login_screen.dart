@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
             children: [
               // Animazione per immagine SVG 1
               ZoomIn(
-                duration: const Duration(seconds: 3),
+                duration: const Duration(seconds: 4),
                 child: SvgPicture.asset(
                   'lib/assets/readlight_book.svg',
                   height: 100,
@@ -30,7 +30,7 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 20),
               // Animazione per immagine SVG 2
               ZoomIn(
-                duration: const Duration(seconds: 6),
+                duration: const Duration(seconds: 8),
                 child: SvgPicture.asset(
                   'lib/assets/readlight.svg',
                   height: 100,
@@ -40,7 +40,7 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 20),
               // Animazione per Button 1
               ZoomIn(
-                duration: const Duration(seconds: 9),
+                duration: const Duration(seconds: 12),
                 child: CustomButton(
                   text: 'LOGIN',
                   isLoginButton: true,
@@ -54,7 +54,7 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 20),
               // Animazione per Button 2
               ZoomIn(
-                duration: const Duration(seconds: 12),
+                duration: const Duration(seconds: 16),
                 child: CustomButton(
                   text: 'CONTINUE Without Account',
                   onPressed: () {
@@ -67,7 +67,7 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 20),
               // Animazione per Button 3
               ZoomIn(
-                duration: const Duration(seconds: 15),
+                duration: const Duration(seconds: 20),
                 child: CustomButton(
                   text: 'CREATE NOW Your Account',
                   onPressed: () {
@@ -76,7 +76,7 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               ZoomIn(
-                duration: const Duration(seconds: 18),
+                duration: const Duration(seconds: 24),
                 child: CustomButton(
                   text: 'WATCH VIDEO',
                   onPressed: () {
