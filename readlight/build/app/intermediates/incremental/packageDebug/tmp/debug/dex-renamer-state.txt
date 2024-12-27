@@ -1,4 +1,4 @@
-#Mon Dec 23 16:52:36 CET 2024
+#Fri Dec 27 18:12:40 CET 2024
 base.0=C\:\\Users\\legol\\OneDrive\\Desktop\\FlutterProjectReadlight\\readlight\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\legol\\OneDrive\\Desktop\\FlutterProjectReadlight\\readlight\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\legol\\OneDrive\\Desktop\\FlutterProjectReadlight\\readlight\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex

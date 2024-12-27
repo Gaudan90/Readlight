@@ -9,14 +9,14 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed ?? () => print('Login button pressed!'),
+      onPressed: onPressed ?? () => 'Login button pressed!',
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.oliveGreen,
         foregroundColor: AppColors.lightBeige,
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        textStyle: TextStyle(fontSize: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        textStyle: const TextStyle(fontSize: 16),
       ),
-      child: Text('Login'),
+      child: const Text('Login'),
     );
   }
 }
@@ -24,19 +24,19 @@ class LoginButton extends StatelessWidget {
 class PlaceholderButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
-  const PlaceholderButton({Key? key, this.onPressed}) : super(key: key);
+  const PlaceholderButton({super.key, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed ?? () => print('Placeholder button pressed!'),
+      onPressed: onPressed ?? () => 'Placeholder button pressed!',
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.lightBrown,
         foregroundColor: AppColors.lightBeige,
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        textStyle: TextStyle(fontSize: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        textStyle: const TextStyle(fontSize: 16),
       ),
-      child: Text('Continue Without Account'),
+      child: const Text('Continue Without Account'),
     );
   }
 }
