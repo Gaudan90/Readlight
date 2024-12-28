@@ -59,7 +59,7 @@ class CustomButtonView extends StatelessWidget {
             onPressed: widget.onPressed,
             style: ElevatedButton.styleFrom(
               backgroundColor: widget.isLoginButton ? AppColors.oliveGreen : widget.backgroundColor,
-              foregroundColor: AppColors.lightBeige,
+              foregroundColor: AppColors.lightYellow,
               padding: const EdgeInsets.symmetric(horizontal: 20),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),

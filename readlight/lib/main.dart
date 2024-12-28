@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     // Naviga a LoginScreen dopo 5 secondi
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const HomepageScreen()),
+        MaterialPageRoute(builder: (context) => const HomePageScreen()),
       );
     });
 

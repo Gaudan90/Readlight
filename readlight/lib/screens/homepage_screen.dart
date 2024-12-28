@@ -5,8 +5,8 @@ import '../theme/app_colors.dart';
 import '../widgets/custom_button.dart';
 import 'login_screen.dart';
 
-class HomepageScreen extends StatelessWidget {
-  const HomepageScreen({super.key});
+class HomePageScreen extends StatelessWidget {
+  const HomePageScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

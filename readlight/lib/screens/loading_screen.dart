@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:readlight/screens/homepage_screen.dart';
-import '../components/loading_bar.dart';
+import '../widgets/loading_bar.dart';
 import '../states/loading_state.dart';
 import '../theme/app_colors.dart';
 
@@ -18,7 +18,7 @@ class LoadingScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // Qui si possono aggiungere altri widget sopra la loading bar
+          // Add more widgets above the loading bar
 
           Positioned(
             bottom: 50,
@@ -29,7 +29,7 @@ class LoadingScreen extends StatelessWidget {
                 state: loadingState,
                 onLoadingComplete: () {
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const HomepageScreen()),
+                    MaterialPageRoute(builder: (context) => const HomePageScreen()),
                   );
                 },
               ),
