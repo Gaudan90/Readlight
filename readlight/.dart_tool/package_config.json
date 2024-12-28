@@ -50,6 +50,12 @@
       "languageVersion": "3.1"
     },
     {
+      "name": "dnsolve",
+      "rootUri": "file:///C:/Users/legol/AppData/Local/Pub/Cache/hosted/pub.dev/dnsolve-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "fake_async",
       "rootUri": "file:///C:/Users/legol/AppData/Local/Pub/Cache/hosted/pub.dev/fake_async-1.3.1",
       "packageUri": "lib/",
@@ -350,7 +356,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-12-28T21:26:13.012987Z",
+  "generated": "2024-12-28T22:09:07.594587Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///C:/Users/legol/dev/flutter",

@@ -38,6 +38,7 @@ class LoginScreenController extends ChangeNotifier {
     }
   }
 
+  //TODO: check with DNS instead. dnsolve has been added already to dependencies
   bool _isValidEmail(String email) {
     if (!email.contains('@')) return false;
 
@@ -50,6 +51,19 @@ class LoginScreenController extends ChangeNotifier {
       'yahoo.com',
       'hotmail.com',
       'outlook.com',
+      'icloud.com',
+      'aol.com',
+      'protonmail.com',
+      'zoho.com',
+      'gmx.com',
+      'mail.com',
+      'yandex.com',
+      'tutanota.com',
+      'fastmail.com',
+      'hushmail.com',
+      'mail.ru',
+      '163.com',
+      'qq.com',
       // Add more here if necessary
     ];
 
