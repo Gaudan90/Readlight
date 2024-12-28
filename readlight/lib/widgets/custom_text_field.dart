@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../states/custom_text_field_state.dart';
+import '../theme/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final CustomTextFieldState state;
@@ -11,28 +12,54 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: state.controller,
-      builder: (context, _) {
-        return TextField(
-          controller: state.controller.textController,
-          keyboardType: state.keyboardType,
-          obscureText: state.controller.isObscured,
-          decoration: InputDecoration(
-            labelText: state.label,
-            errorText: state.controller.errorText,
-            suffixIcon: IconButton(
-              icon: Icon(
-                state.controller.isObscured
-                    ? Icons.visibility_off
-                    : Icons.visibility,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth > 280 ? 280.0 : constraints.maxWidth;
+
+        return ListenableBuilder(
+          listenable: state.controller,
+          builder: (context, _) {
+            return Container(
+              constraints: BoxConstraints(
+                maxWidth: width,
+                maxHeight: 48.0,
               ),
-              onPressed: state.controller.toggleObscured,
-            ),
-          ),
-          onChanged: (value) {
-            state.controller.setText(value);
-            state.onChanged?.call(value);
+              child: TextField(
+                controller: state.controller.textController,
+                keyboardType: state.keyboardType,
+                obscureText: state.controller.isObscured,
+                decoration: InputDecoration(
+                  labelText: state.label,
+                  errorText: state.controller.errorText,
+                  filled: true,
+                  fillColor: AppColors.surfaceDim,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      state.controller.isObscured
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
+                    onPressed: state.controller.toggleObscured,
+                  ),
+                ),
+                onChanged: (value) {
+                  state.controller.setText(value);
+                  state.onChanged?.call(value);
+                },
+              ),
+            );
           },
         );
       },

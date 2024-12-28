@@ -4,6 +4,7 @@ import 'package:animate_do/animate_do.dart';
 import '../theme/app_colors.dart';
 import '../widgets/custom_button.dart';
 import 'login_screen.dart';
+import 'package:turn_page_transition/turn_page_transition.dart';
 
 class HomePageScreen extends StatelessWidget {
   const HomePageScreen({super.key});
@@ -46,8 +47,13 @@ class HomePageScreen extends StatelessWidget {
                     text: 'LOGIN',
                     isLoginButton: true,
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => const LoginScreen()),
+                      Navigator.of(context).push(
+                        TurnPageRoute(
+                          overleafColor: Colors.grey,
+                          animationTransitionPoint: 0.5,
+                          transitionDuration: const Duration(milliseconds: 800),
+                          builder: (context) => const LoginScreen(),
+                        ),
                       );
                     },
                   ),

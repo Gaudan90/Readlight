@@ -37,52 +37,71 @@ class _LoginScreenState extends State<LoginScreen> {
           const BackButtonWidget(),
           Center(
             child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    'lib/assets/readlight_book.svg',
-                    height: 100,
-                    width: 100,
-                  ),
-                  const SizedBox(height: 45),
-                  SvgPicture.asset(
-                    'lib/assets/readlight.svg',
-                    height: 100,
-                    width: 100,
-                  ),
-                  const SizedBox(height: 30),
-                  CustomTextField(
-                    state: CustomTextFieldState(
-                      controller: _state.emailController,
-                      label: 'Email',
-                      keyboardType: TextInputType.emailAddress,
-                      onChanged: (value) {
-                        setState(() {});
-                      },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      'lib/assets/readlight_book.svg',
+                      height: 100,
+                      width: 100,
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  CustomTextField(
-                    state: CustomTextFieldState(
-                      controller: _state.passwordController,
-                      label: 'Password',
-                      onChanged: (value) {
-                        setState(() {});
-                      },
+                    const SizedBox(height: 45),
+                    SvgPicture.asset(
+                      'lib/assets/readlight.svg',
+                      height: 100,
+                      width: 100,
                     ),
-                  ),
-                  const SizedBox(height: 30),
-                  CustomButton(
-                    text: 'Login',
-                    onPressed: () => _controller.handleLogin(context),
-                    isLoginButton: true,
-                  ),
-                  const SizedBox(height: 20),
-                  CustomCheckbox(
-                    state: _state.rememberMeState,
-                  ),
-                ],
+                    const SizedBox(height: 45),
+                    CustomTextField(
+                      state: CustomTextFieldState(
+                        controller: _state.emailController,
+                        label: 'Email',
+                        keyboardType: TextInputType.emailAddress,
+                        onChanged: (value) {
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    CustomTextField(
+                      state: CustomTextFieldState(
+                        controller: _state.passwordController,
+                        label: 'Password',
+                        onChanged: (value) {
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        //TODO: Add logic here to recover password
+                      },
+                      style: TextButton.styleFrom(
+                        foregroundColor: AppColors.onTertiaryContainer,
+                        padding: EdgeInsets.zero,
+                      ),
+                      child: const Text(
+                        'I FORGOT MY PASSWORD!',
+                        style: TextStyle(
+                          color: AppColors.onTertiaryContainer,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 45),
+                    CustomButton(
+                      text: 'Login',
+                      onPressed: () => _controller.handleLogin(context),
+                      isLoginButton: true,
+                    ),
+                    const SizedBox(height: 30),
+                    CustomCheckbox(
+                      state: _state.rememberMeState,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

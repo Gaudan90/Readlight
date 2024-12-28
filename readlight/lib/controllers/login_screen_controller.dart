@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:turn_page_transition/turn_page_transition.dart';
 import '../states/login_screen_state.dart';
 import '../screens/homepage_screen.dart';
 
@@ -101,9 +102,13 @@ class LoginScreenController extends ChangeNotifier {
     await _saveCredentials();
 
     if (context.mounted) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomePageScreen()),
+      Navigator.of(context).push(
+        TurnPageRoute(
+          overleafColor: Colors.grey,
+          animationTransitionPoint: 0.5,
+          transitionDuration: const Duration(milliseconds: 800),
+          builder: (context) => const HomePageScreen(),
+        ),
       );
     }
   }
