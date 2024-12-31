@@ -18,7 +18,7 @@ class LoadingScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // Add more widgets above the loading bar
+          // Add more widgets above the loading bar, if needed
 
           Positioned(
             bottom: 50,

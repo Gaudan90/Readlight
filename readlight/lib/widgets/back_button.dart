@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:turn_page_transition/turn_page_transition.dart';
 
+import '../theme/app_colors.dart';
+
 class BackButtonWidget extends StatelessWidget {
   const BackButtonWidget({super.key});
 
@@ -13,7 +15,7 @@ class BackButtonWidget extends StatelessWidget {
       child: IconButton(
         onPressed: () {
           Navigator.of(context).maybePop(TurnPageRoute(
-            overleafColor: Colors.grey,
+            overleafColor: AppColors.secondaryFixedDim,
             animationTransitionPoint: 0.5,
             transitionDuration: const Duration(milliseconds: 800),
             builder: (context) => const SizedBox.shrink(),

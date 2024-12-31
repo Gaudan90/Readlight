@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:readlight/screens/video_screen.dart';
 import '../theme/app_colors.dart';
 import '../widgets/custom_button.dart';
 import 'login_screen.dart';
@@ -49,7 +50,7 @@ class HomePageScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).push(
                         TurnPageRoute(
-                          overleafColor: Colors.grey,
+                          overleafColor: AppColors.secondaryFixedDim,
                           animationTransitionPoint: 0.5,
                           transitionDuration: const Duration(milliseconds: 800),
                           builder: (context) => const LoginScreen(),
@@ -65,8 +66,13 @@ class HomePageScreen extends StatelessWidget {
                   child: CustomButton(
                     text: 'CONTINUE Without Account',
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => const LoginScreen()),
+                      Navigator.of(context).push(
+                        TurnPageRoute(
+                          overleafColor: AppColors.secondaryFixedDim,
+                          animationTransitionPoint: 0.5,
+                          transitionDuration: const Duration(milliseconds: 800),
+                          builder: (context) => const LoginScreen(),
+                        ),
                       );
                     },
                   ),
@@ -85,8 +91,16 @@ class HomePageScreen extends StatelessWidget {
                 ZoomIn(
                   duration: const Duration(seconds: 24),
                   child: CustomButton(
-                    text: 'WATCH VIDEO',
+                    text: 'WATCH VIDEO Tutorial',
                     onPressed: () {
+                      Navigator.of(context).push(
+                      TurnPageRoute(
+                        overleafColor: AppColors.secondaryFixedDim,
+                        animationTransitionPoint: 0.5,
+                        transitionDuration: const Duration(milliseconds: 800),
+                        builder: (context) => const VideoScreen(),
+                      ),
+                    );
                     },
                   ),
                 ),
