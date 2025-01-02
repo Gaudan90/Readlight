@@ -17,6 +17,7 @@ class VideoScreenState {
   late double buttonWidth;
   late double videoWidth;
   late double videoHeight;
+  late bool isLandscape;
 
   VideoScreenState()
       : youtubeController = YoutubePlayerController(
@@ -31,25 +32,40 @@ class VideoScreenState {
     final mediaQuery = MediaQuery.of(context);
     screenWidth = mediaQuery.size.width;
     screenHeight = mediaQuery.size.height;
+    isLandscape = mediaQuery.orientation == Orientation.landscape;
 
-    if (screenWidth >= 1024) {  // Desktop
+    if (screenWidth >= 1024) {
       screenWidth = baseWidth;
       screenHeight = baseHeight;
-    } else if (screenWidth >= 768) {  // Tablet
+    } else if (screenWidth >= 768) {
       screenWidth = screenWidth * 0.4;
       screenHeight = screenWidth * baseAspectRatio;
-    } else {  // Mobile
+    } else {
       screenWidth = screenWidth * 0.85;
       screenHeight = screenWidth * baseAspectRatio;
     }
 
+    _calculateBaseDimensions();
+    _adjustDimensionsForOrientation();
+  }
+
+  void _calculateBaseDimensions() {
     videoWidth = screenWidth * 0.8;
     videoHeight = videoWidth / videoAspectRatio;
-
     horizontalPadding = screenWidth * 0.05;
     spacingUnit = screenHeight * 0.03;
     logoSize = screenWidth * 0.5;
     buttonWidth = screenWidth * 0.7;
+  }
+
+  void _adjustDimensionsForOrientation() {
+    if (isLandscape) {
+      logoSize *= 0.8;
+      videoWidth *= 0.8;
+      videoHeight = videoWidth / videoAspectRatio;
+      buttonWidth *= 0.8;
+      spacingUnit *= 0.8;
+    }
   }
 
   void dispose() {

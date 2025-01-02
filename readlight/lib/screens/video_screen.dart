@@ -24,6 +24,89 @@ class _VideoScreenState extends State<VideoScreen> {
     _controller = VideoScreenController(state: _state);
   }
 
+  Widget _buildLogoSection() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SvgPicture.asset(
+          'lib/assets/readlight_book.svg',
+          height: _state.logoSize,
+          width: _state.logoSize,
+          fit: BoxFit.contain,
+        ),
+        SizedBox(height: _state.spacingUnit),
+        SvgPicture.asset(
+          'lib/assets/readlight.svg',
+          height: _state.logoSize,
+          width: _state.logoSize,
+          fit: BoxFit.contain,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildContentSection() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: _state.videoWidth,
+          height: _state.videoHeight,
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: YoutubePlayer(
+            controller: _state.youtubeController,
+            showVideoProgressIndicator: true,
+            progressColors: const ProgressBarColors(
+              playedColor: AppColors.onTertiaryContainer,
+              handleColor: AppColors.onTertiaryContainer,
+            ),
+            aspectRatio: VideoScreenState.videoAspectRatio,
+          ),
+        ),
+        SizedBox(height: _state.spacingUnit),
+        SizedBox(
+          width: _state.buttonWidth,
+          child: CustomButton(
+            text: 'BACK',
+            onPressed: () => _controller.handleNavigation(context),
+            isLoginButton: true,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildContent() {
+    if (_state.isLandscape) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Flexible(
+            flex: 1,
+            child: _buildLogoSection(),
+          ),
+          Flexible(
+            flex: 1,
+            child: _buildContentSection(),
+          ),
+        ],
+      );
+    }
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _buildLogoSection(),
+        SizedBox(height: _state.spacingUnit),
+        _buildContentSection(),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     _state.calculateDimensions(context);
@@ -31,69 +114,18 @@ class _VideoScreenState extends State<VideoScreen> {
     return Scaffold(
       backgroundColor: AppColors.onSurfaceVariant,
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: _state.screenWidth,
-                minHeight: MediaQuery.of(context).size.height -
-                    MediaQuery.of(context).padding.top -
-                    MediaQuery.of(context).padding.bottom,
-              ),
-              child: IntrinsicHeight(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: _state.horizontalPadding,
-                    vertical: _state.spacingUnit,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        'lib/assets/readlight_book.svg',
-                        height: _state.logoSize,
-                        width: _state.logoSize,
-                        fit: BoxFit.contain,
-                      ),
-                      SizedBox(height: _state.spacingUnit),
-                      SvgPicture.asset(
-                        'lib/assets/readlight.svg',
-                        height: _state.logoSize,
-                        width: _state.logoSize,
-                        fit: BoxFit.contain,
-                      ),
-                      SizedBox(height: _state.spacingUnit),
-                      Container(
-                        width: _state.videoWidth,
-                        height: _state.videoHeight,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: YoutubePlayer(
-                          controller: _state.youtubeController,
-                          showVideoProgressIndicator: true,
-                          progressColors: const ProgressBarColors(
-                            playedColor: AppColors.onTertiaryContainer,
-                            handleColor: AppColors.onTertiaryContainer,
-                          ),
-                          aspectRatio: VideoScreenState.videoAspectRatio,
-                        ),
-                      ),
-                      SizedBox(height: _state.spacingUnit),
-                      SizedBox(
-                        width: _state.buttonWidth,
-                        child: CustomButton(
-                          text: 'BACK',
-                          onPressed: () => _controller.handleNavigation(context),
-                          isLoginButton: true,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+        child: SingleChildScrollView(
+          child: Container(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height -
+                  MediaQuery.of(context).padding.top -
+                  MediaQuery.of(context).padding.bottom,
             ),
+            padding: EdgeInsets.symmetric(
+              horizontal: _state.horizontalPadding,
+              vertical: _state.spacingUnit,
+            ),
+            child: _buildContent(),
           ),
         ),
       ),

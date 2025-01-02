@@ -13,7 +13,7 @@ class CustomButton extends StatefulWidget {
     super.key,
     required this.text,
     required this.onPressed,
-    this.backgroundColor = AppColors.lightBrown,
+    this.backgroundColor = AppColors.secondaryFixedDim,
     this.isLoginButton = false,
   });
 
@@ -58,8 +58,8 @@ class CustomButtonView extends StatelessWidget {
           child: ElevatedButton(
             onPressed: widget.onPressed,
             style: ElevatedButton.styleFrom(
-              backgroundColor: widget.isLoginButton ? AppColors.oliveGreen : widget.backgroundColor,
-              foregroundColor: AppColors.lightYellow,
+              backgroundColor: widget.isLoginButton ? AppColors.buttonPrimary : widget.backgroundColor,
+              foregroundColor: AppColors.onTertiaryContainer,
               padding: const EdgeInsets.symmetric(horizontal: 20),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:readlight/screens/no_save_screen.dart';
 import 'package:readlight/screens/video_screen.dart';
 import '../theme/app_colors.dart';
 import '../widgets/custom_button.dart';
@@ -71,7 +72,7 @@ class HomePageScreen extends StatelessWidget {
                           overleafColor: AppColors.secondaryFixedDim,
                           animationTransitionPoint: 0.5,
                           transitionDuration: const Duration(milliseconds: 800),
-                          builder: (context) => const LoginScreen(),
+                          builder: (context) => const NoSaveScreen(),
                         ),
                       );
                     },

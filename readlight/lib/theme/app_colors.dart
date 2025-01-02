@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Colori principali
+  // Main colors
   static const Color lightBrown = Color(0xFF735545);
   static const Color brownDark = Color(0xFF2D211B);
   static const Color brownDissolve = Color(0xFF2B160A);
