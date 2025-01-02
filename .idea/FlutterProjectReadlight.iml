@@ -6,6 +6,10 @@
       <excludeFolder url="file://$MODULE_DIR$/readlight/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/readlight/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/readlight/build" />
+      <excludeFolder url="file://$MODULE_DIR$/readlight/android/.gradle/8.10.2/expanded" />
+      <excludeFolder url="file://$MODULE_DIR$/readlight/android/.gradle/8.10.2/vcsMetadata" />
+      <excludeFolder url="file://$MODULE_DIR$/readlight/android/.gradle/8.3/vcsMetadata" />
+      <excludeFolder url="file://$MODULE_DIR$/readlight/android/.gradle/kotlin" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
