@@ -16,7 +16,7 @@ class _LikeButtonState extends State<LikeButtonWidget> {
     return IconButton(
       onPressed: () {
         setState(() {
-          isLiked = !isLiked; // Cambia lo stato quando viene premuto
+          isLiked = true; // Cambia lo stato quando viene premuto
         });
       },
       icon: SvgPicture.asset(
