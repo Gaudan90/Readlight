@@ -65,8 +65,8 @@ flutter:
     - lib/assets/google.svg
     - lib/assets/instagram.svg
     - lib/assets/warning.svg
-    - lib/asset/like_button.svg
-    - lib/asset/survey_button.svg
+    - lib/assets/like_button.svg
+    - lib/assets/survey_button.svg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

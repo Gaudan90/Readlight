@@ -23,7 +23,7 @@ class VideoScreenState {
       : youtubeController = YoutubePlayerController(
     initialVideoId: 'AfK-mI2ASJ4',
     flags: const YoutubePlayerFlags(
-      autoPlay: true,
+      autoPlay: false,
       mute: false,
     ),
   );
