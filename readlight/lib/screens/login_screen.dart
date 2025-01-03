@@ -8,6 +8,7 @@ import '../widgets/custom_button.dart';
 import '../widgets/back_button.dart';
 import '../controllers/login_screen_controller.dart';
 import '../states/login_screen_state.dart';
+import '../widgets/social_login_bar.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -100,6 +101,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     CustomCheckbox(
                       state: _state.rememberMeState,
                     ),
+                    const SizedBox(height: 30),
+                    const SocialLoginBar(),
                   ],
                 ),
               ),

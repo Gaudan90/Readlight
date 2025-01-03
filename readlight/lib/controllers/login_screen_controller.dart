@@ -1,8 +1,10 @@
+// Modified login_screen_controller.dart
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turn_page_transition/turn_page_transition.dart';
 import '../states/login_screen_state.dart';
 import '../screens/homepage_screen.dart';
+import '../theme/app_colors.dart';
 
 class LoginScreenController extends ChangeNotifier {
   final LoginScreenState state;
@@ -65,10 +67,16 @@ class LoginScreenController extends ChangeNotifier {
       'mail.ru',
       '163.com',
       'qq.com',
-      // Add more here if necessary
     ];
 
     return validDomains.contains(domain);
+  }
+
+  bool _isValidUsername(String input) {
+    if (input.contains('@')) {
+      return _isValidEmail(input);
+    }
+    return RegExp(r'^[a-zA-Z0-9_]{3,20}$').hasMatch(input);
   }
 
   String? _validatePassword(String password) {
@@ -88,8 +96,8 @@ class LoginScreenController extends ChangeNotifier {
   }
 
   Future<void> handleLogin(BuildContext context) async {
-    if (!_isValidEmail(state.emailController.text)) {
-      _showErrorMessage(context, 'Email not valid');
+    if (!_isValidUsername(state.emailController.text)) {
+      _showErrorMessage(context, 'Invalid email or username');
       return;
     }
 
@@ -104,7 +112,7 @@ class LoginScreenController extends ChangeNotifier {
     if (context.mounted) {
       Navigator.of(context).push(
         TurnPageRoute(
-          overleafColor: Colors.grey,
+          overleafColor: AppColors.secondaryFixedDim,
           animationTransitionPoint: 0.5,
           transitionDuration: const Duration(milliseconds: 800),
           builder: (context) => const HomePageScreen(),

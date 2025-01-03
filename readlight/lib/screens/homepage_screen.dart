@@ -5,6 +5,7 @@ import 'package:readlight/screens/no_save_screen.dart';
 import 'package:readlight/screens/video_screen.dart';
 import '../theme/app_colors.dart';
 import '../widgets/custom_button.dart';
+import 'create_account_screen.dart';
 import 'login_screen.dart';
 import 'package:turn_page_transition/turn_page_transition.dart';
 
@@ -85,6 +86,14 @@ class HomePageScreen extends StatelessWidget {
                   child: CustomButton(
                     text: 'CREATE NOW Your Account',
                     onPressed: () {
+                      Navigator.of(context).push(
+                      TurnPageRoute(
+                        overleafColor: AppColors.secondaryFixedDim,
+                        animationTransitionPoint: 0.5,
+                        transitionDuration: const Duration(milliseconds: 800),
+                        builder: (context) => const CreateAccountScreen(),
+                      ),
+                    );
                     },
                   ),
                 ),
