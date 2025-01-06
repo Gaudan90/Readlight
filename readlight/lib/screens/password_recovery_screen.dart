@@ -50,7 +50,7 @@ class _RecoveryPasswordScreenState extends State<RecoveryPasswordScreen> {
                       height: 100,
                       width: 100,
                     ),
-                    const SizedBox(height: 45),
+                    const SizedBox(height: 30),
                     if (!_showRecoveryFields)
                       CustomTextField(
                         state: CustomTextFieldState(
@@ -63,6 +63,15 @@ class _RecoveryPasswordScreenState extends State<RecoveryPasswordScreen> {
                         ),
                       ),
                     if (_showRecoveryFields) ...[
+                      const Text(
+                        'ENTER THE CODE WE SENT TO \n YOUR EMAIL',
+                        style: TextStyle(
+                          color: AppColors.onTertiaryContainer,
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 30),
                       CustomTextField(
                         state: CustomTextFieldState(
                           controller: _state.codeController,
