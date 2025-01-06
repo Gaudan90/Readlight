@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../controllers/password_recovery_controller.dart';
-import '../states/custom_text_field_state.dart';
 import '../states/password_recovery_state.dart';
+import '../states/custom_text_field_state.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/custom_button.dart';
 import '../theme/app_colors.dart';
@@ -26,109 +26,151 @@ class _RecoveryPasswordScreenState extends State<RecoveryPasswordScreen> {
     _controller = RecoveryPasswordController(state: _state);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.onSurfaceVariant,
-      body: Stack(
-        children: [
-          Center(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      'lib/assets/readlight_book.svg',
-                      height: 100,
-                      width: 100,
-                    ),
-                    const SizedBox(height: 45),
-                    SvgPicture.asset(
-                      'lib/assets/readlight.svg',
-                      height: 100,
-                      width: 100,
-                    ),
-                    const SizedBox(height: 30),
-                    if (!_showRecoveryFields)
-                      CustomTextField(
-                        state: CustomTextFieldState(
-                          controller: _state.emailController,
-                          label: 'Email',
-                          keyboardType: TextInputType.emailAddress,
-                          onChanged: (value) {
-                            setState(() {});
-                          },
-                        ),
-                      ),
-                    if (_showRecoveryFields) ...[
-                      const Text(
-                        'ENTER THE CODE WE SENT TO \n YOUR EMAIL',
-                        style: TextStyle(
-                          color: AppColors.onTertiaryContainer,
-                          fontSize: 18,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 30),
-                      CustomTextField(
-                        state: CustomTextFieldState(
-                          controller: _state.codeController,
-                          label: 'Recovery Code',
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) {
-                            setState(() {});
-                          },
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      CustomTextField(
-                        state: CustomTextFieldState(
-                          controller: _state.passwordController,
-                          label: 'New Password',
-                          obscureText: true,
-                          onChanged: (value) {
-                            setState(() {});
-                          },
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      CustomTextField(
-                        state: CustomTextFieldState(
-                          controller: _state.confirmPasswordController,
-                          label: 'Confirm Password',
-                          obscureText: true,
-                          onChanged: (value) {
-                            setState(() {});
-                          },
-                        ),
-                      ),
-                    ],
-                    const SizedBox(height: 30),
-                    CustomButton(
-                      text: _showRecoveryFields ? 'ACCEPT' : 'SEND CODE',
-                      onPressed: () {
-                        if (_showRecoveryFields) {
-                          _controller.handlePasswordReset(context);
-                        } else {
-                          _controller.handleSendCode(context).then((success) {
-                            if (success) {
-                              setState(() {
-                                _showRecoveryFields = true;
-                              });
-                            }
-                          });
-                        }
-                      },
-                      isLoginButton: true,
-                    ),
-                  ],
-                ),
-              ),
+  Widget _buildLogoSection() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SvgPicture.asset(
+          'lib/assets/readlight_book.svg',
+          height: _state.logoSize,
+          width: _state.logoSize,
+        ),
+        SizedBox(height: _state.spacingUnit),
+        SvgPicture.asset(
+          'lib/assets/readlight.svg',
+          height: _state.logoSize,
+          width: _state.logoSize,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFormSection() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (!_showRecoveryFields)
+          CustomTextField(
+            state: CustomTextFieldState(
+              controller: _state.emailController,
+              label: 'Email',
+              keyboardType: TextInputType.emailAddress,
+              onChanged: (value) {
+                setState(() {});
+              },
+            ),
+          ),
+        if (_showRecoveryFields) ...[
+          Text(
+            'ENTER THE CODE WE SENT TO \n YOUR EMAIL',
+            style: TextStyle(
+              color: AppColors.onTertiaryContainer,
+              fontSize: _state.textSize,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: _state.spacingUnit * 1.5),
+          CustomTextField(
+            state: CustomTextFieldState(
+              controller: _state.codeController,
+              label: 'Recovery Code',
+              keyboardType: TextInputType.number,
+              onChanged: (value) {
+                setState(() {});
+              },
+            ),
+          ),
+          SizedBox(height: _state.spacingUnit * 2),
+          CustomTextField(
+            state: CustomTextFieldState(
+              controller: _state.passwordController,
+              label: 'New Password',
+              obscureText: true,
+              onChanged: (value) {
+                setState(() {});
+              },
+            ),
+          ),
+          SizedBox(height: _state.spacingUnit * 2),
+          CustomTextField(
+            state: CustomTextFieldState(
+              controller: _state.confirmPasswordController,
+              label: 'Confirm Password',
+              obscureText: true,
+              onChanged: (value) {
+                setState(() {});
+              },
             ),
           ),
         ],
+        SizedBox(height: _state.spacingUnit * 2),
+        SizedBox(
+          width: _state.buttonWidth,
+          child: CustomButton(
+            text: _showRecoveryFields ? 'ACCEPT' : 'SEND CODE',
+            onPressed: () {
+              if (_showRecoveryFields) {
+                _controller.handlePasswordReset(context);
+              } else {
+                _controller.handleSendCode(context).then((success) {
+                  if (success) {
+                    setState(() {
+                      _showRecoveryFields = true;
+                    });
+                  }
+                });
+              }
+            },
+            isLoginButton: true,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildContent() {
+    if (_state.isLandscape) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Flexible(flex: 1, child: _buildLogoSection()),
+          Flexible(flex: 1, child: _buildFormSection()),
+        ],
+      );
+    }
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _buildLogoSection(),
+        SizedBox(height: _state.spacingUnit * 2),
+        _buildFormSection(),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _state.calculateDimensions(context);
+
+    return Scaffold(
+      backgroundColor: AppColors.onSurfaceVariant,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height -
+                  MediaQuery.of(context).padding.top -
+                  MediaQuery.of(context).padding.bottom,
+            ),
+            padding: EdgeInsets.symmetric(
+              horizontal: _state.horizontalPadding,
+              vertical: _state.spacingUnit,
+            ),
+            child: _buildContent(),
+          ),
+        ),
       ),
     );
   }
