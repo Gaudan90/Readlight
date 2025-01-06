@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:readlight/screens/homepage_screen.dart';
 import 'package:turn_page_transition/turn_page_transition.dart';
-import '../screens/login_screen.dart';
 import '../states/password_recovery_state.dart';
 import '../theme/app_colors.dart';
 
@@ -94,7 +94,7 @@ class RecoveryPasswordController extends ChangeNotifier {
           overleafColor: AppColors.secondaryFixedDim,
           animationTransitionPoint: 0.5,
           transitionDuration: const Duration(milliseconds: 800),
-          builder: (context) => const LoginScreen(),
+          builder: (context) => const HomePageScreen(),
         ),
       );
     }
