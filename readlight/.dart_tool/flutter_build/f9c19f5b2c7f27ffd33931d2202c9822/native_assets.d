@@ -1,0 +1,1 @@
+ C:\\Users\\legol\\OneDrive\\Desktop\\FlutterProjectReadlight\\readlight\\.dart_tool\\flutter_build\\f9c19f5b2c7f27ffd33931d2202c9822\\native_assets.yaml: 
