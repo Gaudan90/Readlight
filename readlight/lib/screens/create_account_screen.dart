@@ -47,13 +47,13 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       height: 100,
                       width: 100,
                     ),
-                    const SizedBox(height: 45),
+                    const SizedBox(height: 20),
                     SvgPicture.asset(
                       'lib/assets/readlight.svg',
                       height: 100,
                       width: 100,
                     ),
-                    const SizedBox(height: 45),
+                    const SizedBox(height: 20),
                     CustomTextField(
                       state: CustomTextFieldState(
                         controller: _state.emailController,
@@ -64,7 +64,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         },
                       ),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
                     CustomTextField(
                       state: CustomTextFieldState(
                         controller: _state.usernameController,
@@ -74,7 +74,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         },
                       ),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
                     CustomTextField(
                       state: CustomTextFieldState(
                         controller: _state.passwordController,
@@ -84,17 +84,17 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         },
                       ),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
                     CustomCheckbox(
                       state: _state.newsletterState,
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
                     CustomButton(
                       text: 'CREATE Account',
                       onPressed: () => _controller.handleCreateAccount(context),
                       isLoginButton: true,
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
                     const Text(
                       'OR LOGIN WITH',
                       style: TextStyle(
@@ -102,7 +102,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
                     const SocialLoginBar(),
                   ],
                 ),

@@ -19,46 +19,61 @@ class CustomTextField extends StatelessWidget {
         return ListenableBuilder(
           listenable: state.controller,
           builder: (context, _) {
-            return Container(
-              constraints: BoxConstraints(
-                maxWidth: width,
-                maxHeight: 48.0,
-              ),
-              child: TextField(
-                controller: state.controller.textController,
-                keyboardType: state.keyboardType,
-                obscureText: state.controller.isObscured,
-                decoration: InputDecoration(
-                  labelText: state.label,
-                  errorText: state.controller.errorText,
-                  filled: true,
-                  fillColor: AppColors.surfaceDim,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50.0),
-                    borderSide: BorderSide.none,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50.0),
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50.0),
-                    borderSide: BorderSide.none,
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      state.controller.isObscured
-                          ? Icons.visibility_off
-                          : Icons.visibility,
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 4, bottom: 4),
+                  child: Text(
+                    state.label,
+                    style: const TextStyle(
+                      color: AppColors.onTertiaryContainer,
+                      fontSize: 12,
                     ),
-                    onPressed: state.controller.toggleObscured,
                   ),
                 ),
-                onChanged: (value) {
-                  state.controller.setText(value);
-                  state.onChanged?.call(value);
-                },
-              ),
+                Container(
+                  constraints: BoxConstraints(
+                    maxWidth: width,
+                    maxHeight: 48.0,
+                  ),
+                  child: TextField(
+                    controller: state.controller.textController,
+                    keyboardType: state.keyboardType,
+                    obscureText: state.controller.isObscured,
+                    decoration: InputDecoration(
+                      errorText: state.controller.errorText,
+                      filled: true,
+                      fillColor: AppColors.surfaceDim,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                        borderSide: BorderSide.none,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                        borderSide: BorderSide.none,
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          state.controller.isObscured
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
+                        onPressed: state.controller.toggleObscured,
+                      ),
+                    ),
+                    onChanged: (value) {
+                      state.controller.setText(value);
+                      state.onChanged?.call(value);
+                    },
+                  ),
+                ),
+              ],
             );
           },
         );
