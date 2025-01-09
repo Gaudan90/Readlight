@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:turn_page_transition/turn_page_transition.dart';
-
 import '../theme/app_colors.dart';
 
 class BackButtonWidget extends StatelessWidget {
@@ -21,7 +20,8 @@ class BackButtonWidget extends StatelessWidget {
             builder: (context) => const SizedBox.shrink(),
           ));
         },
-        icon: SvgPicture.asset('lib/assets/back_button.svg'), // SVG button asset
+        icon:
+            SvgPicture.asset('lib/assets/back_button.svg'), // SVG button asset
         iconSize: 35,
       ),
     );

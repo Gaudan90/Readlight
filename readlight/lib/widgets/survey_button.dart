@@ -11,8 +11,7 @@ class SurveyButtonWidget extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-              builder: (context) => SurveyScreen()), // Navigate to SurveyScreen
+          MaterialPageRoute(builder: (context) => const SurveyScreen()),
         );
       },
       icon: SvgPicture.asset(

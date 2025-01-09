@@ -35,17 +35,17 @@ class _SocialLoginBarState extends State<SocialLoginBar> {
             children: [
               _buildSocialButton(
                 'lib/assets/google.svg',
-                    () => _controller.onFacebookTap(context),
+                () => _controller.onFacebookTap(context),
                 buttonSize,
               ),
               _buildSocialButton(
                 'lib/assets/facebook.svg',
-                    () => _controller.onGoogleTap(context),
+                () => _controller.onGoogleTap(context),
                 buttonSize,
               ),
               _buildSocialButton(
                 'lib/assets/instagram.svg',
-                    () => _controller.onAppleTap(context),
+                () => _controller.onAppleTap(context),
                 buttonSize,
               ),
             ],

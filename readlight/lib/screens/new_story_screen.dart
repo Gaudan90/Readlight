@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../widgets/back_button.dart';
 import '../widgets/survey_button.dart';
 import '../widgets/like_button.dart';
+import '../theme/app_colors.dart';
 
 class NewStoryScreen extends StatelessWidget {
   const NewStoryScreen({super.key});
@@ -10,40 +10,38 @@ class NewStoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFEAE5AB),
-      body: Stack(
+      backgroundColor: AppColors.onSurfaceVariant,
+      body: Column(
         children: [
-          const Positioned(
-            top: 20,
-            left: 20,
-            child: BackButtonWidget(),
-          ),
-          const Positioned(
-            top: 20,
-            left: 70,
-            child: LikeButtonWidget(),
-          ),
-          Positioned(
-            top: 20,
-            left: MediaQuery.of(context).size.width / 2 - 40,
-            child: const Text(
-              'Love and vote!',
-              style: TextStyle(
-                fontSize: 18,
-                color: Color(0xFFEAE5AB),
-                fontWeight: FontWeight.bold,
-              ),
+          Container(
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: const Row(
+              children: [
+                BackButtonWidget(),
+                SizedBox(width: 10),
+                LikeButtonWidget(),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      'Love and vote!',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: AppColors.lightYellow,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                SurveyButtonWidget(),
+              ],
             ),
           ),
-          const Positioned(
-            top: 20,
-            right: 20,
-            child: SurveyButtonWidget(),
-          ),
-          Center(
+          Expanded(
             child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -78,23 +76,69 @@ class NewStoryScreen extends StatelessWidget {
                       child: const Column(
                         children: [
                           UserComment(
-                            name: "persona1",
+                            name: "p1",
                             comment:
                                 "I think their teamwork was the key to solve it.",
+                            isEven: false,
                           ),
                           UserComment(
-                            name: "persona2",
+                            name: "p2",
                             comment:
                                 "I wonder what will happen in the next chapter, if there will be one.",
+                            isEven: true,
                           ),
                           UserComment(
-                            name: "persona3",
+                            name: "p3",
                             comment:
                                 "It would be great if there was not a sequel, but a prequel.",
+                            isEven: false,
+                          ),
+                          UserComment(
+                            name: "p4",
+                            comment:
+                                "The magical compass reminded me of my childhood adventures.",
+                            isEven: true,
+                          ),
+                          UserComment(
+                            name: "p5",
+                            comment:
+                                "The description of Eldoria was so vivid, I felt like I was there.",
+                            isEven: false,
+                          ),
+                          UserComment(
+                            name: "p6",
+                            comment:
+                                "The grandmother's character seems very interesting.",
+                            isEven: true,
+                          ),
+                          UserComment(
+                            name: "p7",
+                            comment:
+                                "I love how the story combines mystery with family bonds.",
+                            isEven: false,
+                          ),
+                          UserComment(
+                            name: "p8",
+                            comment:
+                                "Can't wait to discover what the blue light means!",
+                            isEven: true,
+                          ),
+                          UserComment(
+                            name: "p9",
+                            comment:
+                                "The attic scene set up the perfect atmosphere.",
+                            isEven: false,
+                          ),
+                          UserComment(
+                            name: "p10",
+                            comment:
+                                "This story has great potential for a series.",
+                            isEven: true,
                           ),
                         ],
                       ),
                     ),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -109,8 +153,14 @@ class NewStoryScreen extends StatelessWidget {
 class UserComment extends StatelessWidget {
   final String name;
   final String comment;
+  final bool isEven;
 
-  const UserComment({required this.name, required this.comment, super.key});
+  const UserComment({
+    required this.name,
+    required this.comment,
+    required this.isEven,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -118,16 +168,32 @@ class UserComment extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          CircleAvatar(
-            child: Text(name[0]),
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              comment,
-              style: const TextStyle(fontSize: 14),
+          if (!isEven) ...[
+            CircleAvatar(
+              backgroundColor: Colors.blue.shade100,
+              child: Text(name[0].toUpperCase()),
             ),
-          ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                comment,
+                style: const TextStyle(fontSize: 14),
+              ),
+            ),
+          ] else ...[
+            Expanded(
+              child: Text(
+                comment,
+                style: const TextStyle(fontSize: 14),
+                textAlign: TextAlign.end,
+              ),
+            ),
+            const SizedBox(width: 10),
+            CircleAvatar(
+              backgroundColor: Colors.blue.shade100,
+              child: Text(name[0].toUpperCase()),
+            ),
+          ],
         ],
       ),
     );
