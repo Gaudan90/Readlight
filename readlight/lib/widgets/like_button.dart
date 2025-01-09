@@ -21,8 +21,8 @@ class _LikeButtonState extends State<LikeButtonWidget> {
       },
       icon: SvgPicture.asset(
         isLiked
-            ? 'assets/like_button_active.svg' // Nuovo stato: versione attiva
-            : 'assets/like_button.svg', // Stato iniziale: versione normale
+            ? 'lib/assets/like_button_active.svg' // Nuovo stato: versione attiva
+            : 'lib/assets/like_button.svg', // Stato iniziale: versione normale
         // ignore: deprecated_member_use
         color: isLiked ? Colors.red : null,
       ),

@@ -15,7 +15,7 @@ class SurveyButtonWidget extends StatelessWidget {
         );
       },
       icon: SvgPicture.asset(
-        'assets/survey_button.svg',
+        'lib/assets/survey_button.svg',
         width: 24,
         height: 24,
       ),

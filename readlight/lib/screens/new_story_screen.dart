@@ -20,6 +20,7 @@ class NewStoryScreen extends StatelessWidget {
                 BackButtonWidget(),
                 SizedBox(width: 10),
                 LikeButtonWidget(),
+                SizedBox(width: 10),
                 Expanded(
                   child: Center(
                     child: Text(
@@ -33,6 +34,7 @@ class NewStoryScreen extends StatelessWidget {
                   ),
                 ),
                 SurveyButtonWidget(),
+                SizedBox(width: 10),
               ],
             ),
           ),
