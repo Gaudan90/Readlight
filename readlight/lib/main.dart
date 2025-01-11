@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:readlight/screens/homepage_screen.dart';
 import 'package:readlight/screens/loading_screen.dart';
-import 'package:readlight/screens/new_story_screen.dart';
 import 'package:turn_page_transition/turn_page_transition.dart';
 import 'theme/app_colors.dart';
 
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.onSurfaceVariant,
       ),
-      home: const NewStoryScreen(),
+      home: const LoadingScreen(),
     );
   }
 }

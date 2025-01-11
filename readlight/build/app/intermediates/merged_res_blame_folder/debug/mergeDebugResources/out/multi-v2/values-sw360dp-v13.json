@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.readlight.app-mergeDebugResources-4:/values-sw360dp-v13/values-sw360dp-v13.xml",
+            "outputFile": "com.example.readlight.app-mergeDebugResources-43:/values-sw360dp-v13/values-sw360dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\march\\.gradle\\caches\\8.10.2\\transforms\\d0bd1ed2d1bef989c6316bbbd2904db3\\transformed\\preference-1.2.1\\res\\values-sw360dp-v13\\values-sw360dp-v13.xml",
+                    "source": "C:\\Users\\legol\\.gradle\\caches\\8.10.2\\transforms\\e2158b55b6ed947798f615cbe623ee2b\\transformed\\preference-1.2.1\\res\\values-sw360dp-v13\\values-sw360dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
