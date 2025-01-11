@@ -1,10 +1,11 @@
-// Modified login_screen_controller.dart
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turn_page_transition/turn_page_transition.dart';
 import '../states/login_screen_state.dart';
 import '../screens/homepage_screen.dart';
 import '../theme/app_colors.dart';
+
+// TODO: add flutter_secure_storage instead of shared_preferences
 
 class LoginScreenController extends ChangeNotifier {
   final LoginScreenState state;
