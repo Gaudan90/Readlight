@@ -16,13 +16,13 @@ class _LikeButtonState extends State<LikeButtonWidget> {
     return IconButton(
       onPressed: () {
         setState(() {
-          isLiked = true; // Cambia lo stato quando viene premuto
+          isLiked = !isLiked; // Toggle the state when pressed
         });
       },
       icon: SvgPicture.asset(
         isLiked
-            ? 'lib/assets/like_button_active.svg' // Nuovo stato: versione attiva
-            : 'lib/assets/like_button.svg', // Stato iniziale: versione normale
+            ? 'lib/assets/like_button_active.svg'
+            : 'lib/assets/like_button.svg',
         // ignore: deprecated_member_use
         color: isLiked ? Colors.red : null,
       ),
