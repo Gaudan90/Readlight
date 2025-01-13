@@ -10,7 +10,7 @@ class LoginScreenState {
   final CustomCheckboxState rememberMeState;
 
   LoginScreenState()
-      : emailController = CustomTextFieldController(),
+      : emailController = CustomTextFieldController(initiallyObscured: false),
         passwordController = CustomTextFieldController(initiallyObscured: true),
         rememberMeState = CustomCheckboxState(
           controller: CustomCheckboxController(),

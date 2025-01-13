@@ -22,8 +22,10 @@ class RecoveryPasswordState {
   late bool isLandscape;
 
   RecoveryPasswordState()
-      : emailController = CustomTextFieldController(),
-        codeController = CustomTextFieldController(),
+      : emailController = CustomTextFieldController
+    (initiallyObscured: false),
+        codeController = CustomTextFieldController
+          (initiallyObscured: false),
         passwordController = CustomTextFieldController
           (initiallyObscured: true),
         confirmPasswordController = CustomTextFieldController

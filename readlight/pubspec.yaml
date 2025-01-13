@@ -70,6 +70,12 @@ flutter:
     - lib/assets/survey_button.svg
     - lib/assets/reader.png
     - lib/assets/writer.png
+    - lib/assets/fantasy.png
+    - lib/assets/horror.png
+    - lib/assets/mystery.png
+    - lib/assets/narrative.png
+    - lib/assets/romantic.png
+    - lib/assets/other.png
 
 
   # The following line ensures that the Material Icons font is

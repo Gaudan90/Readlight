@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:turn_page_transition/turn_page_transition.dart';
-import '../screens/homepage_screen.dart';
+import '../screens/genre_selection_screen.dart';
 import '../states/role_selection_state.dart';
 import '../theme/app_colors.dart';
 
@@ -47,9 +47,10 @@ class RoleSelectionController extends ChangeNotifier {
         overleafColor: AppColors.secondaryFixedDim,
         animationTransitionPoint: 0.5,
         transitionDuration: const Duration(milliseconds: 800),
-        builder: (context) => const HomePageScreen(),
+        builder: (context) => const GenreSelectionScreen(userRole: 'Reader'),
       ),
-    );  }
+    );
+  }
 
   void onWriterSelected(BuildContext context) {
     Navigator.of(context).push(
@@ -57,9 +58,10 @@ class RoleSelectionController extends ChangeNotifier {
         overleafColor: AppColors.secondaryFixedDim,
         animationTransitionPoint: 0.5,
         transitionDuration: const Duration(milliseconds: 800),
-        builder: (context) => const HomePageScreen(),
+        builder: (context) => const GenreSelectionScreen(userRole: 'Writer'),
       ),
-    );  }
+    );
+  }
 
   // Private helpers
   void _updateDimensions(BuildContext context) {

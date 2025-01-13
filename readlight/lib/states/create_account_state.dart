@@ -11,8 +11,8 @@ class CreateAccountScreenState {
   final CustomCheckboxState newsletterState;
 
   CreateAccountScreenState()
-      : emailController = CustomTextFieldController(),
-        usernameController = CustomTextFieldController(),
+      : emailController = CustomTextFieldController(initiallyObscured: false),
+        usernameController = CustomTextFieldController(initiallyObscured: false),
         passwordController = CustomTextFieldController(initiallyObscured: true),
         newsletterState = CustomCheckboxState(
           controller: CustomCheckboxController(),

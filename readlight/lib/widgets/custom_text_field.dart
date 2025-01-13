@@ -58,14 +58,16 @@ class CustomTextField extends StatelessWidget {
                         borderRadius: BorderRadius.circular(50.0),
                         borderSide: BorderSide.none,
                       ),
-                      suffixIcon: IconButton(
+                      suffixIcon: state.controller.shouldShowIcon
+                          ? IconButton(
                         icon: Icon(
                           state.controller.isObscured
                               ? Icons.visibility_off
                               : Icons.visibility,
                         ),
                         onPressed: state.controller.toggleObscured,
-                      ),
+                      )
+                          : null,
                     ),
                     onChanged: (value) {
                       state.controller.setText(value);
