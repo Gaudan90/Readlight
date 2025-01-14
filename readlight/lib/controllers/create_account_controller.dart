@@ -1,45 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:turn_page_transition/turn_page_transition.dart';
 import '../screens/role_selection_screen.dart';
 import '../states/create_account_state.dart';
+import 'package:dnsolve/dnsolve.dart';
+
 import '../theme/app_colors.dart';
 
 class CreateAccountScreenController extends ChangeNotifier {
   final CreateAccountScreenState state;
+  final _supabase = Supabase.instance.client;
+  final _dnsolver = DNSolve();
 
   CreateAccountScreenController({
     required this.state,
   });
 
-  //TODO: check with DNS instead. dnsolve has been added already to dependencies
-  bool _isValidEmail(String email) {
+  // Checks if email is valid through syntax and DNS!
+  Future<bool> _isValidEmail(String email) async {
     if (!email.contains('@')) return false;
+    if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$').hasMatch(email)) {
+      return false;
+    }
 
-    final emailParts = email.split('@');
-    if (emailParts.length != 2) return false;
+    try {
+      final domain = email.split('@')[1];
 
-    final domain = emailParts[1];
-    final validDomains = [
-      'gmail.com',
-      'yahoo.com',
-      'hotmail.com',
-      'outlook.com',
-      'icloud.com',
-      'aol.com',
-      'protonmail.com',
-      'zoho.com',
-      'gmx.com',
-      'mail.com',
-      'yandex.com',
-      'tutanota.com',
-      'fastmail.com',
-      'hushmail.com',
-      'mail.ru',
-      '163.com',
-      'qq.com',
-    ];
+      // Checking record MX (Mail Exchange)!
+      final mxResponse = await _dnsolver.lookup(
+        domain,
+        type: RecordType.mx,
+        dnsSec: true,
+      );
+      if (mxResponse.answer?.records?.isNotEmpty ?? false) {
+        return true;
+      }
 
-    return validDomains.contains(domain);
+      // If no MX are found, record A (Answer) is a fallback!
+      final aResponse = await _dnsolver.lookup(
+        domain,
+        type: RecordType.A,
+        dnsSec: true,
+      );
+      return aResponse.answer?.records?.isNotEmpty ?? false;
+
+    } catch (e) {
+      return false;
+    }
   }
 
   bool _isValidUsername(String username) {
@@ -50,49 +57,134 @@ class CreateAccountScreenController extends ChangeNotifier {
 
   String? _validatePassword(String password) {
     if (password.length < 6) {
-      return 'Password must be 6 characters long!';
+      return 'Password must be at least 6 characters long';
     }
     if (!password.contains(RegExp(r'[A-Z]'))) {
-      return 'Password must have at least a capitol letter';
+      return 'Password must have at least a capitol character';
     }
     if (!password.contains(RegExp(r'[0-9]'))) {
-      return 'Password must contain a number';
+      return 'Password must have at least a number';
     }
     if (!password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-      return 'Password must have a special character';
+      return 'Password must have at least a special character';
     }
     return null;
   }
 
   Future<void> handleCreateAccount(BuildContext context) async {
-    if (!_isValidEmail(state.emailController.text)) {
-      _showErrorMessage(context, 'Email not valid');
-      return;
-    }
+    try {
+      _showLoadingDialog(context);
 
-    if (!_isValidUsername(state.usernameController.text)) {
-      _showErrorMessage(context, 'Username must be 3-20 characters long and contain only letters, numbers, and underscores');
-      return;
-    }
+      final isEmailValid = await _isValidEmail(state.emailController.text);
+      if (!isEmailValid) {
+        if (context.mounted) {
+          Navigator.of(context).pop();
+          _showErrorMessage(context, 'Invalid email or non-existing domain');
+        }
+        return;
+      }
 
-    final passwordError = _validatePassword(state.passwordController.text);
-    if (passwordError != null) {
-      _showErrorMessage(context, passwordError);
-      return;
-    }
+      if (!_isValidUsername(state.usernameController.text)) {
+        if (context.mounted) {
+          Navigator.of(context).pop();
+          _showErrorMessage(
+              context,
+              'Username must be 3-20 characters and contain only letters, numbers, and underscore'
+          );
+        }
+        return;
+      }
 
-    // TODO: Implement account creation logic here
+      final passwordError = _validatePassword(state.passwordController.text);
+      if (passwordError != null) {
+        if (context.mounted) {
+          Navigator.of(context).pop();
+          _showErrorMessage(context, passwordError);
+        }
+        return;
+      }
 
-    if (context.mounted) {
-      Navigator.of(context).push(
-        TurnPageRoute(
-          overleafColor: AppColors.secondaryFixedDim,
-          animationTransitionPoint: 0.5,
-          transitionDuration: const Duration(milliseconds: 800),
-          builder: (context) => const RoleSelectionScreen(),
-        ),
+      // User registration with Supabase!!
+      final authResponse = await _supabase.auth.signUp(
+        email: state.emailController.text,
+        password: state.passwordController.text,
+        data: {
+          'username': state.usernameController.text,
+        },
       );
+
+      // Check if user creation was successful
+      if (authResponse.user == null) {
+        debugPrint('Error: authResponse.user is null');
+        throw Exception('Error during account creation: user is null');
+      }
+
+      try {
+        await _supabase.from('profiles').insert({
+          'id': authResponse.user!.id,
+          'email': state.emailController.text,
+          'username': state.usernameController.text,
+          'subscribed_to_newsletter': state.newsletterState.controller.isChecked,
+          'created_at': DateTime.now().toIso8601String(),
+        }).select();
+      } catch (e) {
+        await _supabase.auth.admin.deleteUser(authResponse.user!.id);
+        throw Exception('Error during profile creation');
+      }
+
+      if (context.mounted) {
+        Navigator.of(context).pop();
+        Navigator.of(context).push(
+          TurnPageRoute(
+            overleafColor: AppColors.secondaryFixedDim,
+            animationTransitionPoint: 0.5,
+            transitionDuration: const Duration(milliseconds: 800),
+            builder: (context) => const RoleSelectionScreen(),
+          ),
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Account created successfully! Check your email to verify your account.'),
+            duration: Duration(seconds: 5),
+          ),
+        );
+      }
+    } on AuthException catch (error) {
+      debugPrint('AuthException: ${error.message}');
+      if (context.mounted) {
+        Navigator.of(context).pop();
+        _showErrorMessage(context, _getAuthErrorMessage(error.message));
+      }
+    } catch (error) {
+      debugPrint('Generic error: $error');
+      if (context.mounted) {
+        Navigator.of(context).pop();
+        _showErrorMessage(context, 'An error occurred during account creation: $error');
+      }
     }
+  }
+
+  String _getAuthErrorMessage(String errorCode) {
+    switch (errorCode) {
+      case 'User already registered':
+        return 'An account with this email already exists.';
+      case 'Invalid email':
+        return 'Email not valid.';
+      case 'Weak password':
+        return 'Password is too weak, try a stronger one.';
+      default:
+        return 'An error occurred during registration';
+    }
+  }
+  void _showLoadingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
   }
 
   void _showErrorMessage(BuildContext context, String message) {

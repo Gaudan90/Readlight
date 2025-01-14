@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turn_page_transition/turn_page_transition.dart';
 import '../states/login_screen_state.dart';
 import '../screens/homepage_screen.dart';
 import '../theme/app_colors.dart';
 
-// TODO: add flutter_secure_storage instead of shared_preferences
-
 class LoginScreenController extends ChangeNotifier {
   final LoginScreenState state;
+  final _supabase = Supabase.instance.client;
 
   LoginScreenController({
     required this.state,
@@ -42,84 +42,65 @@ class LoginScreenController extends ChangeNotifier {
     }
   }
 
-  //TODO: check with DNS instead. dnsolve has been added already to dependencies
-  bool _isValidEmail(String email) {
-    if (!email.contains('@')) return false;
-
-    final emailParts = email.split('@');
-    if (emailParts.length != 2) return false;
-
-    final domain = emailParts[1];
-    final validDomains = [
-      'gmail.com',
-      'yahoo.com',
-      'hotmail.com',
-      'outlook.com',
-      'icloud.com',
-      'aol.com',
-      'protonmail.com',
-      'zoho.com',
-      'gmx.com',
-      'mail.com',
-      'yandex.com',
-      'tutanota.com',
-      'fastmail.com',
-      'hushmail.com',
-      'mail.ru',
-      '163.com',
-      'qq.com',
-    ];
-
-    return validDomains.contains(domain);
-  }
-
-  bool _isValidUsername(String input) {
-    if (input.contains('@')) {
-      return _isValidEmail(input);
-    }
-    return RegExp(r'^[a-zA-Z0-9_]{3,20}$').hasMatch(input);
-  }
-
-  String? _validatePassword(String password) {
-    if (password.length < 6) {
-      return 'Password must be 6 characters long!';
-    }
-    if (!password.contains(RegExp(r'[A-Z]'))) {
-      return 'Password must have at least a capitol letter';
-    }
-    if (!password.contains(RegExp(r'[0-9]'))) {
-      return 'Password must contain a number';
-    }
-    if (!password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-      return 'Password must have a special character';
-    }
-    return null;
-  }
-
   Future<void> handleLogin(BuildContext context) async {
-    if (!_isValidUsername(state.emailController.text)) {
-      _showErrorMessage(context, 'Invalid email or username');
-      return;
-    }
+    try {
+      _showLoadingDialog(context);
 
-    final passwordError = _validatePassword(state.passwordController.text);
-    if (passwordError != null) {
-      _showErrorMessage(context, passwordError);
-      return;
-    }
-
-    await _saveCredentials();
-
-    if (context.mounted) {
-      Navigator.of(context).push(
-        TurnPageRoute(
-          overleafColor: AppColors.secondaryFixedDim,
-          animationTransitionPoint: 0.5,
-          transitionDuration: const Duration(milliseconds: 800),
-          builder: (context) => const HomePageScreen(),
-        ),
+      // Supabase login - no API required
+      final response = await _supabase.auth.signInWithPassword(
+        email: state.emailController.text,
+        password: state.passwordController.text,
       );
+
+      await _saveCredentials();
+
+      if (context.mounted) {
+        Navigator.of(context).pop();
+      }
+
+      // TODO: Se il login ha successo, naviga alla home page. È da cambiare presto
+      if (response.user != null && context.mounted) {
+        Navigator.of(context).push(
+          TurnPageRoute(
+            overleafColor: AppColors.secondaryFixedDim,
+            animationTransitionPoint: 0.5,
+            transitionDuration: const Duration(milliseconds: 800),
+            builder: (context) => const HomePageScreen(),
+          ),
+        );
+      }
+    } on AuthException catch (error) {
+      if (context.mounted) {
+        Navigator.of(context).pop();
+        _showErrorMessage(context, _getErrorMessage(error.message));
+      }
+    } catch (error) {
+      if (context.mounted) {
+        Navigator.of(context).pop();
+        _showErrorMessage(context, 'An error occurred during login');
+      }
     }
+  }
+
+  String _getErrorMessage(String errorCode) {
+    switch (errorCode) {
+      case 'Invalid login credentials':
+        return 'Email or password not valid';
+      case 'Email not confirmed':
+        return 'Please confirm email before accessing';
+      default:
+        return 'An error occurred during login';
+    }
+  }
+
+  void _showLoadingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
   }
 
   void _showErrorMessage(BuildContext context, String message) {
@@ -130,8 +111,7 @@ class LoginScreenController extends ChangeNotifier {
 
   @override
   void dispose() {
-    state.emailController.dispose();
-    state.passwordController.dispose();
+    state.dispose();
     super.dispose();
   }
 }
