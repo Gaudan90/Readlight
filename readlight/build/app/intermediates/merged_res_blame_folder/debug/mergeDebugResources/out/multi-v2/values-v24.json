@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.readlight.app-mergeDebugResources-44:/values-v24/values-v24.xml",
+            "outputFile": "com.example.readlight.app-mergeDebugResources-4:/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\legol\\.gradle\\caches\\8.10.2\\transforms\\c93a957ac207c321c1eef4052f3eb09d\\transformed\\appcompat-1.6.1\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\march\\.gradle\\caches\\8.10.2\\transforms\\561b684e4d454f9288805951fbd202e5\\transformed\\appcompat-1.6.1\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
