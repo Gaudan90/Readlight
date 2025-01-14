@@ -5,6 +5,9 @@
 /shelf/
 /workspace.xml
 
+# .gitignore
+.env
+
 # This is dynamic in a monorepo
 bin/internal/engine.version
 
