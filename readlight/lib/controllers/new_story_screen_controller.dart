@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-class NewStoryScreenController {
+class NewStoryScreenController extends ChangeNotifier {
   final List<CommentData> allComments = [
     CommentData("p1", "I think their teamwork was the key to solve it."),
     CommentData("p2",
@@ -22,19 +22,26 @@ class NewStoryScreenController {
 
   List<CommentData> visibleComments = [];
   final TextEditingController commentController = TextEditingController();
-  int currentIndex = 3;
   Timer? _timer;
+  int _lastGeneratedIndex = 3;
 
   void initializeComments() {
+    // Show initial 3 comments
     visibleComments = allComments.take(3).toList();
+    _lastGeneratedIndex = 2; // Index of the last shown comment
+
+    // Start timer for automatic comments
     startShowingComments();
   }
 
   void startShowingComments() {
+    _timer?.cancel(); // Cancel any existing timer
+
     _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
-      if (currentIndex < allComments.length) {
-        visibleComments.add(allComments[currentIndex]);
-        currentIndex++;
+      if (_lastGeneratedIndex < allComments.length - 1) {
+        _lastGeneratedIndex++;
+        visibleComments.add(allComments[_lastGeneratedIndex]);
+        notifyListeners();
       } else {
         timer.cancel();
       }
@@ -42,21 +49,35 @@ class NewStoryScreenController {
   }
 
   void addNewComment(String text) {
-    if (text.isNotEmpty) {
-      int insertIndex = currentIndex - 1;
+    if (text.isEmpty) return;
 
-      if (currentIndex >= allComments.length) {
-        insertIndex = visibleComments.length;
-      }
+    // Add user comment after the last generated comment
+    final newUserComment = CommentData("you", text);
 
-      visibleComments.insert(insertIndex, CommentData("you", text));
-      commentController.clear();
+    if (_lastGeneratedIndex >= allComments.length - 1) {
+      // If all system comments are shown, add to the end
+      visibleComments.add(newUserComment);
+    } else {
+      // Insert after the last generated comment
+      final insertIndex = visibleComments.indexWhere(
+              (comment) => comment == allComments[_lastGeneratedIndex]) +
+          1;
+      visibleComments.insert(insertIndex, newUserComment);
     }
+
+    commentController.clear();
+    notifyListeners();
   }
 
+  bool isCurrentUser(String username) {
+    return username == "you";
+  }
+
+  @override
   void dispose() {
     commentController.dispose();
     _timer?.cancel();
+    super.dispose();
   }
 }
 

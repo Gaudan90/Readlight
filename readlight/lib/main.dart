@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.onSurfaceVariant,
       ),
-      home: const NewStoryScreen(),
+      home: const LoadingScreen(),
     );
   }
 }
