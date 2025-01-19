@@ -30,6 +30,7 @@ class _DailyQuoteScreenState extends ConsumerState<DailyQuoteScreen> {
     final quoteState = ref.watch(dailyQuoteProvider);
     final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
 
+
     return Scaffold(
       backgroundColor: AppColors.onSurfaceVariant,
       body: SafeArea(

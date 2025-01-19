@@ -18,9 +18,11 @@ class NavigationHelper {
   }
 }
 
-// To use this, do it like this!!
-//
-// NavigationHelper.turnPageNavigate(
-//   context: context,
-//   page: const NextScreen(),
-// );
+/* To use this, do it like this!!
+
+ NavigationHelper.turnPageNavigate(
+   context: context,
+   page: const NextScreen(),
+ );
+
+ */
