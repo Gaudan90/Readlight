@@ -90,6 +90,13 @@ flutter:
     - lib/assets/music_off.png
     - lib/assets/upload.png
     - lib/assets/audio/background_music.mp3
+    - lib/assets/last_story.png
+    - lib/assets/echoes.png
+    - lib/assets/flame.png
+    - lib/assets/keys.png
+    - lib/assets/legacy.png
+    - lib/assets/moonlight.png
+    - lib/assets/tide.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
