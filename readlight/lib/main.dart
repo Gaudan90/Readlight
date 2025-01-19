@@ -11,6 +11,7 @@ import 'package:readlight/screens/main_page_screen.dart';
 import 'package:readlight/screens/new_story_screen.dart';
 import 'package:readlight/screens/no_save_screen.dart';
 import 'package:readlight/screens/password_recovery_screen.dart';
+import 'package:readlight/screens/profile_screen.dart';
 import 'package:readlight/screens/role_selection_screen.dart';
 import 'package:readlight/screens/survey_screen.dart';
 import 'package:readlight/screens/video_screen.dart';
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
         '/new_story': (context) => const NewStoryScreen(),
         '/survey': (context) => const SurveyScreen(),
         '/main_page': (context) => const MainPageScreen(),
-
+        '/profile': (context) => const ProfileScreen(),
       },
     );
   }

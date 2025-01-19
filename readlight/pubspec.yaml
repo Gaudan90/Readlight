@@ -44,6 +44,9 @@ dependencies:
   youtube_player_flutter: ^9.1.1
   flutter_secure_storage: ^9.2.4
   flutter_riverpod: ^2.6.1
+  file_picker: ^5.0.0
+  just_audio: ^0.9.34
+  path_provider: ^2.1.1
 
 dev_dependencies:
   flutter_test:
@@ -83,6 +86,10 @@ flutter:
     - lib/assets/write_your_story.png
     - lib/assets/read_a_story.png
     - lib/assets/access_community.png
+    - lib/assets/music_on.png
+    - lib/assets/music_off.png
+    - lib/assets/upload.png
+    - lib/assets/audio/background_music.mp3
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
