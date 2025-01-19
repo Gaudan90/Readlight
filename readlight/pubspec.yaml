@@ -83,6 +83,14 @@ flutter:
     - lib/assets/write_your_story.png
     - lib/assets/read_a_story.png
     - lib/assets/access_community.png
+    - lib/assets/last_story.png
+    - lib/assets/echoes.png
+    - lib/assets/flame.png
+    - lib/assets/keys.png
+    - lib/assets/legacy.png
+    - lib/assets/moonlight.png
+    - lib/assets/tide.png
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
