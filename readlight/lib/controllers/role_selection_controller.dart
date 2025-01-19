@@ -3,6 +3,7 @@ import 'package:turn_page_transition/turn_page_transition.dart';
 import '../screens/genre_selection_screen.dart';
 import '../states/role_selection_state.dart';
 import '../theme/app_colors.dart';
+import '../utilities/navigation_helper.dart';
 
 class RoleSelectionController extends ChangeNotifier {
   final RoleSelectionState state;
@@ -42,28 +43,19 @@ class RoleSelectionController extends ChangeNotifier {
 
   // Event handlers
   void onReaderSelected(BuildContext context) {
-    Navigator.of(context).push(
-      TurnPageRoute(
-        overleafColor: AppColors.secondaryFixedDim,
-        animationTransitionPoint: 0.5,
-        transitionDuration: const Duration(milliseconds: 800),
-        builder: (context) => const GenreSelectionScreen(userRole: 'Reader'),
-      ),
+    NavigationHelper.turnPageNavigate(
+      context: context,
+      page: const GenreSelectionScreen(userRole: 'Reader'),
     );
   }
 
   void onWriterSelected(BuildContext context) {
-    Navigator.of(context).push(
-      TurnPageRoute(
-        overleafColor: AppColors.secondaryFixedDim,
-        animationTransitionPoint: 0.5,
-        transitionDuration: const Duration(milliseconds: 800),
-        builder: (context) => const GenreSelectionScreen(userRole: 'Writer'),
-      ),
+    NavigationHelper.turnPageNavigate(
+      context: context,
+      page: const GenreSelectionScreen(userRole: 'Writer'),
     );
   }
 
-  // Private helpers
   void _updateDimensions(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     state.updateDimensions(

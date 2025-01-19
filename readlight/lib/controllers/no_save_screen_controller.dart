@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:turn_page_transition/turn_page_transition.dart';
+import '../screens/daily_quote_screen.dart';
 import '../states/no_save_screen_state.dart';
 import '../theme/app_colors.dart';
+import '../utilities/navigation_helper.dart';
 
 class NoSaveScreenController extends ChangeNotifier {
   final NoSaveScreenState state;
@@ -20,7 +22,10 @@ class NoSaveScreenController extends ChangeNotifier {
   }
 
   void handleContinue(BuildContext context) {
-    // Add your continue navigation logic here
+    NavigationHelper.turnPageNavigate(
+      context: context,
+      page: const DailyQuoteScreen(),
+    );
   }
 
   @override

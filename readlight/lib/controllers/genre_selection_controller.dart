@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:turn_page_transition/turn_page_transition.dart';
-import '../screens/homepage_screen.dart';
+import 'package:readlight/screens/daily_quote_screen.dart';
 import '../states/genre_selection_state.dart';
-import '../theme/app_colors.dart';
+import '../utilities/navigation_helper.dart';
 
 class GenreSelectionController extends ChangeNotifier {
   final GenreSelectionState state;
@@ -30,13 +29,9 @@ class GenreSelectionController extends ChangeNotifier {
       return;
     }
 
-    Navigator.of(context).push(
-      TurnPageRoute(
-        overleafColor: AppColors.secondaryFixedDim,
-        animationTransitionPoint: 0.5,
-        transitionDuration: const Duration(milliseconds: 800),
-        builder: (context) => const HomePageScreen(),
-      ),
+    NavigationHelper.turnPageNavigate(
+      context: context,
+      page: const DailyQuoteScreen(),
     );
   }
 }

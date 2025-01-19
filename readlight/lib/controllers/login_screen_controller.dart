@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:readlight/screens/daily_quote_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turn_page_transition/turn_page_transition.dart';
 import '../states/login_screen_state.dart';
-import '../screens/homepage_screen.dart';
 import '../theme/app_colors.dart';
 
 class LoginScreenController extends ChangeNotifier {
@@ -58,14 +58,14 @@ class LoginScreenController extends ChangeNotifier {
         Navigator.of(context).pop();
       }
 
-      // TODO: Se il login ha successo, naviga alla home page. È da cambiare presto
+      // TODO: Se il login ha successo, naviga alla pagina DailyQuote
       if (response.user != null && context.mounted) {
         Navigator.of(context).push(
           TurnPageRoute(
             overleafColor: AppColors.secondaryFixedDim,
             animationTransitionPoint: 0.5,
             transitionDuration: const Duration(milliseconds: 800),
-            builder: (context) => const HomePageScreen(),
+            builder: (context) => const DailyQuoteScreen(),
           ),
         );
       }

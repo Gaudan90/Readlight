@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:readlight/screens/homepage_screen.dart';
-import 'package:turn_page_transition/turn_page_transition.dart';
+import '../utilities/navigation_helper.dart';
 import '../widgets/loading_bar.dart';
 import '../states/loading_state.dart';
 import '../theme/app_colors.dart';
@@ -29,13 +29,9 @@ class LoadingScreen extends StatelessWidget {
               child: LoadingBar(
                 state: loadingState,
                 onLoadingComplete: () {
-                  Navigator.of(context).push(
-                    TurnPageRoute(
-                      overleafColor: AppColors.secondaryFixedDim,
-                      animationTransitionPoint: 0.5,
-                      transitionDuration: const Duration(milliseconds: 800),
-                      builder: (context) => const HomePageScreen(),
-                    ),
+                  NavigationHelper.turnPageNavigate(
+                    context: context,
+                    page: const HomePageScreen(),
                   );
                 },
               ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:readlight/screens/password_recovery_screen.dart';
-import 'package:turn_page_transition/turn_page_transition.dart';
 import '../theme/app_colors.dart';
 import '../states/custom_text_field_state.dart';
+import '../utilities/navigation_helper.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/custom_checkbox.dart';
 import '../widgets/custom_button.dart';
@@ -79,13 +79,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(
-                          TurnPageRoute(
-                            overleafColor: AppColors.secondaryFixedDim,
-                            animationTransitionPoint: 0.5,
-                            transitionDuration: const Duration(milliseconds: 800),
-                            builder: (context) => const RecoveryPasswordScreen(),
-                          ),
+                        NavigationHelper.turnPageNavigate(
+                          context: context,
+                          page: const RecoveryPasswordScreen(),
                         );
                       },
                       style: TextButton.styleFrom(

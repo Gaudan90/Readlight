@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:readlight/screens/homepage_screen.dart';
-import 'package:turn_page_transition/turn_page_transition.dart';
 import '../states/password_recovery_state.dart';
-import '../theme/app_colors.dart';
+import '../utilities/navigation_helper.dart';
 
 class RecoveryPasswordController extends ChangeNotifier {
   final RecoveryPasswordState state;
@@ -89,13 +88,9 @@ class RecoveryPasswordController extends ChangeNotifier {
     }
 
     if (context.mounted) {
-      Navigator.of(context).push(
-        TurnPageRoute(
-          overleafColor: AppColors.secondaryFixedDim,
-          animationTransitionPoint: 0.5,
-          transitionDuration: const Duration(milliseconds: 800),
-          builder: (context) => const HomePageScreen(),
-        ),
+      NavigationHelper.turnPageNavigate(
+        context: context,
+        page: const HomePageScreen(),
       );
     }
   }

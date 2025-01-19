@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:turn_page_transition/turn_page_transition.dart';
 import '../screens/role_selection_screen.dart';
 import '../states/create_account_state.dart';
 import 'package:dnsolve/dnsolve.dart';
-
-import '../theme/app_colors.dart';
+import '../utilities/navigation_helper.dart';
 
 class CreateAccountScreenController extends ChangeNotifier {
   final CreateAccountScreenState state;
@@ -134,14 +132,11 @@ class CreateAccountScreenController extends ChangeNotifier {
 
       if (context.mounted) {
         Navigator.of(context).pop();
-        Navigator.of(context).push(
-          TurnPageRoute(
-            overleafColor: AppColors.secondaryFixedDim,
-            animationTransitionPoint: 0.5,
-            transitionDuration: const Duration(milliseconds: 800),
-            builder: (context) => const RoleSelectionScreen(),
-          ),
+        NavigationHelper.turnPageNavigate(
+          context: context,
+          page: const RoleSelectionScreen(),
         );
+
 
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(

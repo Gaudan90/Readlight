@@ -4,10 +4,10 @@ import 'package:animate_do/animate_do.dart';
 import 'package:readlight/screens/no_save_screen.dart';
 import 'package:readlight/screens/video_screen.dart';
 import '../theme/app_colors.dart';
+import '../utilities/navigation_helper.dart';
 import '../widgets/custom_button.dart';
 import 'create_account_screen.dart';
 import 'login_screen.dart';
-import 'package:turn_page_transition/turn_page_transition.dart';
 
 class HomePageScreen extends StatelessWidget {
   const HomePageScreen({super.key});
@@ -50,13 +50,9 @@ class HomePageScreen extends StatelessWidget {
                     text: 'LOGIN',
                     isLoginButton: true,
                     onPressed: () {
-                      Navigator.of(context).push(
-                        TurnPageRoute(
-                          overleafColor: AppColors.secondaryFixedDim,
-                          animationTransitionPoint: 0.5,
-                          transitionDuration: const Duration(milliseconds: 800),
-                          builder: (context) => const LoginScreen(),
-                        ),
+                      NavigationHelper.turnPageNavigate(
+                        context: context,
+                        page: const LoginScreen(),
                       );
                     },
                   ),
@@ -68,13 +64,9 @@ class HomePageScreen extends StatelessWidget {
                   child: CustomButton(
                     text: 'CONTINUE Without Account',
                     onPressed: () {
-                      Navigator.of(context).push(
-                        TurnPageRoute(
-                          overleafColor: AppColors.secondaryFixedDim,
-                          animationTransitionPoint: 0.5,
-                          transitionDuration: const Duration(milliseconds: 800),
-                          builder: (context) => const NoSaveScreen(),
-                        ),
+                      NavigationHelper.turnPageNavigate(
+                        context: context,
+                        page: const NoSaveScreen(),
                       );
                     },
                   ),
@@ -86,14 +78,10 @@ class HomePageScreen extends StatelessWidget {
                   child: CustomButton(
                     text: 'CREATE NOW Your Account',
                     onPressed: () {
-                      Navigator.of(context).push(
-                      TurnPageRoute(
-                        overleafColor: AppColors.secondaryFixedDim,
-                        animationTransitionPoint: 0.5,
-                        transitionDuration: const Duration(milliseconds: 800),
-                        builder: (context) => const CreateAccountScreen(),
-                      ),
-                    );
+                      NavigationHelper.turnPageNavigate(
+                        context: context,
+                        page: const CreateAccountScreen(),
+                      );
                     },
                   ),
                 ),
@@ -103,14 +91,10 @@ class HomePageScreen extends StatelessWidget {
                   child: CustomButton(
                     text: 'WATCH VIDEO Tutorial',
                     onPressed: () {
-                      Navigator.of(context).push(
-                      TurnPageRoute(
-                        overleafColor: AppColors.secondaryFixedDim,
-                        animationTransitionPoint: 0.5,
-                        transitionDuration: const Duration(milliseconds: 800),
-                        builder: (context) => const VideoScreen(),
-                      ),
-                    );
+                      NavigationHelper.turnPageNavigate(
+                        context: context,
+                        page: const VideoScreen(),
+                      );
                     },
                   ),
                 ),
