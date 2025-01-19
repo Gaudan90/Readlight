@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:readlight/screens/homepage_screen.dart';
+import 'package:readlight/screens/new_story_screen.dart';
 import 'package:turn_page_transition/turn_page_transition.dart';
 import '../states/daily_quote_state.dart';
 import '../theme/app_colors.dart';

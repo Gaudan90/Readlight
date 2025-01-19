@@ -7,6 +7,54 @@ import '../controllers/new_story_screen_controller.dart';
 import '../widgets/avatar_image.dart';
 import '../states/new_story_screen_state.dart';
 
+class NavigationItem {
+  final String label;
+  final IconData icon;
+  final Widget screen;
+
+  NavigationItem({
+    required this.label,
+    required this.icon,
+    required this.screen,
+  });
+}
+
+class CustomNavigationBar extends StatelessWidget {
+  final List<NavigationItem> items;
+
+  const CustomNavigationBar({
+    required this.items,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: AppColors.lightBeige,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: items
+            .map(
+              (item) => IconButton(
+                icon: Icon(item.icon),
+                onPressed: () {
+                  // Handle navigation
+                },
+                tooltip: item.label,
+              ),
+            )
+            .toList(),
+      ),
+    );
+  }
+}
+
 class NewStoryScreen extends StatefulWidget {
   const NewStoryScreen({super.key});
 
@@ -85,50 +133,72 @@ Widget buildScreen(BuildContext context, NewStoryScreenController controller) {
     fontWeight: FontWeight.bold,
   );
 
+  final navigationItems = [
+    NavigationItem(
+      label: 'Home',
+      icon: Icons.home_outlined,
+      screen: const Center(child: Text('Home Screen')),
+    ),
+    NavigationItem(
+      label: 'Profile',
+      icon: Icons.person_outline,
+      screen: const Center(child: Text('Profile Screen')),
+    ),
+    NavigationItem(
+      label: 'Settings',
+      icon: Icons.settings_outlined,
+      screen: const Center(child: Text('Settings Screen')),
+    ),
+  ];
+
   return Scaffold(
     backgroundColor: AppColors.onSurfaceVariant,
-    body: Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: const Row(
-            children: [
-              SizedBox(height: 25),
-              BackButtonWidget(),
-              SizedBox(width: 10),
-              LikeButtonWidget(),
-              SizedBox(width: 10),
-              Expanded(
-                child: Center(
-                  child: Text(
-                    'Love and vote!',
-                    style: headerStyle,
+    body: SafeArea(
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: const Row(
+              children: [
+                SizedBox(height: 25),
+                BackButtonWidget(),
+                SizedBox(width: 10),
+                LikeButtonWidget(),
+                SizedBox(width: 10),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      'Love and vote!',
+                      style: headerStyle,
+                    ),
                   ),
                 ),
-              ),
-              SurveyButtonWidget(),
-              SizedBox(width: 10),
-            ],
+                SurveyButtonWidget(),
+                SizedBox(width: 10),
+              ],
+            ),
           ),
-        ),
-        Expanded(
-          child: SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildStoryContainer(),
-                  const SizedBox(height: 30),
-                  _buildCommentsContainer(controller),
-                  const SizedBox(height: 20),
-                ],
+          Expanded(
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildStoryContainer(),
+                    const SizedBox(height: 30),
+                    _buildCommentsContainer(controller),
+                    const SizedBox(height: 20),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ],
+          CustomNavigationBar(items: navigationItems),
+        ],
+      ),
     ),
   );
 }
@@ -141,7 +211,7 @@ Widget _buildStoryContainer() {
   );
 
   return Container(
-    height: 240,
+    height: 300,
     decoration: BoxDecoration(
       color: AppColors.lightBeige,
       borderRadius: BorderRadius.circular(25),

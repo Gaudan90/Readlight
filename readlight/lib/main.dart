@@ -7,9 +7,11 @@ import 'package:readlight/screens/genre_selection_screen.dart';
 import 'package:readlight/screens/homepage_screen.dart';
 import 'package:readlight/screens/loading_screen.dart';
 import 'package:readlight/screens/login_screen.dart';
+import 'package:readlight/screens/new_story_screen.dart';
 import 'package:readlight/screens/no_save_screen.dart';
 import 'package:readlight/screens/password_recovery_screen.dart';
 import 'package:readlight/screens/role_selection_screen.dart';
+import 'package:readlight/screens/survey_screen.dart';
 import 'package:readlight/screens/video_screen.dart';
 import 'theme/app_colors.dart';
 
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.onSurfaceVariant,
       ),
-      initialRoute: '/loading',
+      initialRoute: '/new_story',
       routes: {
         '/loading': (context) => const LoadingScreen(),
         '/home': (context) => const HomePageScreen(),
@@ -48,8 +50,12 @@ class MyApp extends StatelessWidget {
         '/video': (context) => const VideoScreen(),
         '/password_recovery': (context) => const RecoveryPasswordScreen(),
         '/role_selection': (context) => const RoleSelectionScreen(),
-        '/genre_selection': (context) => const GenreSelectionScreen(userRole: '',),
+        '/genre_selection': (context) => const GenreSelectionScreen(
+              userRole: '',
+            ),
         '/daily_quote': (context) => const DailyQuoteScreen(),
+        '/new_story': (centext) => const NewStoryScreen(),
+        '/survey': (context) => const SurveyScreen(),
       },
     );
   }
