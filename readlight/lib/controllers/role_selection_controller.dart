@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:turn_page_transition/turn_page_transition.dart';
 import '../screens/genre_selection_screen.dart';
 import '../states/role_selection_state.dart';
-import '../theme/app_colors.dart';
 import '../utilities/navigation_helper.dart';
 
 class RoleSelectionController extends ChangeNotifier {

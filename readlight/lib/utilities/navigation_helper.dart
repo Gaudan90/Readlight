@@ -22,7 +22,7 @@ class NavigationHelper {
 
  NavigationHelper.turnPageNavigate(
    context: context,
-   page: const NextScreen(),
+   page: const NameOfTheScreen(),
  );
 
  */

@@ -7,6 +7,7 @@ import 'package:readlight/screens/genre_selection_screen.dart';
 import 'package:readlight/screens/homepage_screen.dart';
 import 'package:readlight/screens/loading_screen.dart';
 import 'package:readlight/screens/login_screen.dart';
+import 'package:readlight/screens/main_page_screen.dart';
 import 'package:readlight/screens/new_story_screen.dart';
 import 'package:readlight/screens/no_save_screen.dart';
 import 'package:readlight/screens/password_recovery_screen.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.onSurfaceVariant,
       ),
-      initialRoute: '/new_story',
+      initialRoute: '/loading',
       routes: {
         '/loading': (context) => const LoadingScreen(),
         '/home': (context) => const HomePageScreen(),
@@ -54,8 +55,10 @@ class MyApp extends StatelessWidget {
               userRole: '',
             ),
         '/daily_quote': (context) => const DailyQuoteScreen(),
-        '/new_story': (centext) => const NewStoryScreen(),
+        '/new_story': (context) => const NewStoryScreen(),
         '/survey': (context) => const SurveyScreen(),
+        '/main_page': (context) => const MainPageScreen(),
+
       },
     );
   }

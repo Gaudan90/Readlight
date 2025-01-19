@@ -26,16 +26,13 @@ class NewStoryScreenController extends ChangeNotifier {
   int _lastGeneratedIndex = 3;
 
   void initializeComments() {
-    // Show initial 3 comments
     visibleComments = allComments.take(3).toList();
-    _lastGeneratedIndex = 2; // Index of the last shown comment
-
-    // Start timer for automatic comments
+    _lastGeneratedIndex = 2;
     startShowingComments();
   }
 
   void startShowingComments() {
-    _timer?.cancel(); // Cancel any existing timer
+    _timer?.cancel();
 
     _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       if (_lastGeneratedIndex < allComments.length - 1) {
@@ -51,14 +48,11 @@ class NewStoryScreenController extends ChangeNotifier {
   void addNewComment(String text) {
     if (text.isEmpty) return;
 
-    // Add user comment after the last generated comment
     final newUserComment = CommentData("you", text);
 
     if (_lastGeneratedIndex >= allComments.length - 1) {
-      // If all system comments are shown, add to the end
       visibleComments.add(newUserComment);
     } else {
-      // Insert after the last generated comment
       final insertIndex = visibleComments.indexWhere(
               (comment) => comment == allComments[_lastGeneratedIndex]) +
           1;
