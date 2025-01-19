@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../states/custom_navigation_state.dart';
 import '../widgets/back_button.dart';
 import '../widgets/survey_button.dart';
 import '../widgets/like_button.dart';
@@ -6,54 +7,7 @@ import '../theme/app_colors.dart';
 import '../controllers/new_story_screen_controller.dart';
 import '../widgets/avatar_image.dart';
 import '../states/new_story_screen_state.dart';
-
-class NavigationItem {
-  final String label;
-  final IconData icon;
-  final Widget screen;
-
-  NavigationItem({
-    required this.label,
-    required this.icon,
-    required this.screen,
-  });
-}
-
-class CustomNavigationBar extends StatelessWidget {
-  final List<NavigationItem> items;
-
-  const CustomNavigationBar({
-    required this.items,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: AppColors.lightBeige,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15),
-          topRight: Radius.circular(15),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: items
-            .map(
-              (item) => IconButton(
-                icon: Icon(item.icon),
-                onPressed: () {
-                  // Handle navigation
-                },
-                tooltip: item.label,
-              ),
-            )
-            .toList(),
-      ),
-    );
-  }
-}
+import 'main_page_screen.dart';
 
 class NewStoryScreen extends StatefulWidget {
   const NewStoryScreen({super.key});
@@ -137,7 +91,7 @@ Widget buildScreen(BuildContext context, NewStoryScreenController controller) {
     NavigationItem(
       label: 'Home',
       icon: Icons.home_outlined,
-      screen: const Center(child: Text('Home Screen')),
+      screen: const MainPageScreen(),
     ),
     NavigationItem(
       label: 'Profile',
@@ -182,8 +136,7 @@ Widget buildScreen(BuildContext context, NewStoryScreenController controller) {
             child: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -196,7 +149,51 @@ Widget buildScreen(BuildContext context, NewStoryScreenController controller) {
               ),
             ),
           ),
-          CustomNavigationBar(items: navigationItems),
+          Container(
+            decoration: const BoxDecoration(
+              color: AppColors.secondaryFixedDim,
+            ),
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: navigationItems.map((item) => GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        PageRouteBuilder(
+                          pageBuilder: (context, animation, secondaryAnimation) => item.screen,
+                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                            return child;
+                          },
+                        ),
+                      );
+                    },
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          item.icon,
+                          color: AppColors.onTertiaryContainer,
+                          size: 24,
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          item.label,
+                          style: const TextStyle(
+                            color: AppColors.onTertiaryContainer,
+                            fontSize: 12,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )).toList(),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     ),
@@ -258,7 +255,7 @@ Widget _buildCommentsContainer(NewStoryScreenController controller) {
               children: [
                 ...List.generate(
                   controller.visibleComments.length,
-                  (index) => UserComment(
+                      (index) => UserComment(
                     name: controller.visibleComments[index].name,
                     comment: controller.visibleComments[index].comment,
                     isEven: index.isEven,
