@@ -33,7 +33,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: _state.navigationItems.map((item) => GestureDetector(
+            children: _controller.navigationItems.map((item) => GestureDetector(
               onTap: () => _controller.navigateToScreen(context, item.screen),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
