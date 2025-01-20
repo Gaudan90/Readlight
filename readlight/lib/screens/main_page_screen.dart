@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:readlight/screens/homepage_screen.dart';
+import 'package:readlight/screens/profile_screen.dart';
+import 'package:readlight/screens/settings_screen.dart';
 import '../controllers/main_page_controller.dart';
 import '../states/custom_navigation_state.dart';
 import '../states/main_page_state.dart';
@@ -76,12 +78,12 @@ class _MainPageScreenState extends State<MainPageScreen> {
       NavigationItem(
         label: 'Profile',
         icon: Icons.person_outline,
-        screen: const HomePageScreen(),
+        screen: const ProfileScreen(),
       ),
       NavigationItem(
         label: 'Settings',
         icon: Icons.settings_outlined,
-        screen: const HomePageScreen(),
+        screen: const SettingsScreen(),
       ),
     ];
     return CustomNavigationBar(items: navigationItems);

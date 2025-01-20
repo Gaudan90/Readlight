@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:readlight/screens/main_page_screen.dart';
+import 'package:readlight/screens/profile_screen.dart';
+import 'package:readlight/screens/settings_screen.dart';
 import '../controllers/read_a_story_controller.dart';
 import '../states/custom_navigation_state.dart';
 import '../states/read_a_story_state.dart';
+import '../widgets/custom_navigation_bar.dart';
 import '../widgets/custom_text_field.dart';
 import '../theme/app_colors.dart';
 import 'new_story_screen.dart';
@@ -122,14 +125,15 @@ class _ReadAStoryScreenState extends State<ReadAStoryScreen> {
       NavigationItem(
         label: 'Profile',
         icon: Icons.person_outline,
-        screen: const Center(child: Text('Profile Screen')),
+        screen: const ProfileScreen(),
       ),
       NavigationItem(
         label: 'Settings',
         icon: Icons.settings_outlined,
-        screen: const Center(child: Text('Settings Screen')),
+        screen: const SettingsScreen(),
       ),
     ];
+    CustomNavigationBar(items: navigationItems);
 
     return Container(
       decoration: const BoxDecoration(

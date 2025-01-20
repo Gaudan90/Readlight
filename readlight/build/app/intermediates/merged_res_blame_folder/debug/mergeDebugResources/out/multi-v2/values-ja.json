@@ -1,61 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.readlight.app-mergeDebugResources-4:/values-ja/values-ja.xml",
+            "outputFile": "com.example.readlight.app-mergeDebugResources-47:/values-ja/values-ja.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\march\\.gradle\\caches\\8.10.2\\transforms\\debaf33b42f70766ee403efe5af8c70d\\transformed\\core-1.13.1\\res\\values-ja\\values-ja.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,147,247,341,437,530,623,724",
-                        "endColumns": "91,99,93,95,92,92,100,100",
-                        "endOffsets": "142,242,336,432,525,618,719,820"
-                    },
-                    "to": {
-                        "startLines": "29,30,31,32,33,34,35,54",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "2691,2783,2883,2977,3073,3166,3259,4778",
-                        "endColumns": "91,99,93,95,92,92,100,100",
-                        "endOffsets": "2778,2878,2972,3068,3161,3254,3355,4874"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\march\\.gradle\\caches\\8.10.2\\transforms\\d0bd1ed2d1bef989c6316bbbd2904db3\\transformed\\preference-1.2.1\\res\\values-ja\\values-ja.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "105,172,255,325,453,621,701",
-                        "endColumns": "66,82,69,127,167,79,75",
-                        "endOffsets": "167,250,320,448,616,696,772"
-                    },
-                    "to": {
-                        "startLines": "36,47,51,52,55,56,57",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "3360,4127,4501,4571,4879,5047,5127",
-                        "endColumns": "66,82,69,127,167,79,75",
-                        "endOffsets": "3422,4205,4566,4694,5042,5122,5198"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\march\\.gradle\\caches\\8.10.2\\transforms\\ef6eeb4ebdcf3b1e0cd76645af812407\\transformed\\browser-1.8.0\\res\\values-ja\\values-ja.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,148,243,344",
-                        "endColumns": "92,94,100,94",
-                        "endOffsets": "143,238,339,434"
-                    },
-                    "to": {
-                        "startLines": "37,48,49,50",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "3427,4210,4305,4406",
-                        "endColumns": "92,94,100,94",
-                        "endOffsets": "3515,4300,4401,4496"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\march\\.gradle\\caches\\8.10.2\\transforms\\561b684e4d454f9288805951fbd202e5\\transformed\\appcompat-1.6.1\\res\\values-ja\\values-ja.xml",
+                    "source": "C:\\Users\\legol\\.gradle\\caches\\8.10.2\\transforms\\c93a957ac207c321c1eef4052f3eb09d\\transformed\\appcompat-1.6.1\\res\\values-ja\\values-ja.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -72,7 +21,58 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\march\\.gradle\\caches\\8.10.2\\transforms\\aba9dacd686097df1934fddd2d27db7d\\transformed\\jetified-media3-exoplayer-1.4.1\\res\\values-ja\\values-ja.xml",
+                    "source": "C:\\Users\\legol\\.gradle\\caches\\8.10.2\\transforms\\81f1a7bead5b860d95190bf92638af9b\\transformed\\browser-1.8.0\\res\\values-ja\\values-ja.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,148,243,344",
+                        "endColumns": "92,94,100,94",
+                        "endOffsets": "143,238,339,434"
+                    },
+                    "to": {
+                        "startLines": "37,48,49,50",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "3427,4210,4305,4406",
+                        "endColumns": "92,94,100,94",
+                        "endOffsets": "3515,4300,4401,4496"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\legol\\.gradle\\caches\\8.10.2\\transforms\\e2158b55b6ed947798f615cbe623ee2b\\transformed\\preference-1.2.1\\res\\values-ja\\values-ja.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "105,172,255,325,453,621,701",
+                        "endColumns": "66,82,69,127,167,79,75",
+                        "endOffsets": "167,250,320,448,616,696,772"
+                    },
+                    "to": {
+                        "startLines": "36,47,51,52,55,56,57",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "3360,4127,4501,4571,4879,5047,5127",
+                        "endColumns": "66,82,69,127,167,79,75",
+                        "endOffsets": "3422,4205,4566,4694,5042,5122,5198"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\legol\\.gradle\\caches\\8.10.2\\transforms\\d606c5ebaf5413b45384c5a13550df8f\\transformed\\core-1.13.1\\res\\values-ja\\values-ja.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,147,247,341,437,530,623,724",
+                        "endColumns": "91,99,93,95,92,92,100,100",
+                        "endOffsets": "142,242,336,432,525,618,719,820"
+                    },
+                    "to": {
+                        "startLines": "29,30,31,32,33,34,35,54",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "2691,2783,2883,2977,3073,3166,3259,4778",
+                        "endColumns": "91,99,93,95,92,92,100,100",
+                        "endOffsets": "2778,2878,2972,3068,3161,3254,3355,4874"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\legol\\.gradle\\caches\\8.10.2\\transforms\\b765ea86a9108813eb4157bf8a203b23\\transformed\\jetified-media3-exoplayer-1.4.1\\res\\values-ja\\values-ja.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",

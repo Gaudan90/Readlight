@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:readlight/controllers/profile_screen_controller.dart';
+import 'package:readlight/screens/main_page_screen.dart';
+import 'package:readlight/screens/settings_screen.dart';
+import '../states/custom_navigation_state.dart';
 import '../theme/app_colors.dart';
 import '../data/avatar_api.dart';
+import '../widgets/custom_navigation_bar.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -29,6 +33,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final paddingTop = MediaQuery.of(context).padding.top;
+    final navigationItems = [
+      NavigationItem(
+        label: 'Home',
+        icon: Icons.home_outlined,
+        screen: const MainPageScreen(),
+      ),
+      NavigationItem(
+        label: 'Profile',
+        icon: Icons.person_outline,
+        screen: const ProfileScreen(),
+      ),
+      NavigationItem(
+        label: 'Settings',
+        icon: Icons.settings_outlined,
+        screen: const SettingsScreen(),
+      ),
+    ];
+    CustomNavigationBar(items: navigationItems);
 
     return Scaffold(
       backgroundColor: AppColors.onSurfaceVariant,
@@ -61,14 +83,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
           IconButton(
             icon: Icon(
               controller.state.isMusicOn ? Icons.music_note : Icons.music_off,
-              color: AppColors.lightYellow,
+              size: 50,
+              color: !controller.state.isMusicOn ?
+              AppColors.onSecondaryContainer :
+              AppColors.onTertiaryContainer,
             ),
             onPressed: controller.toggleMusic,
           ),
           const SizedBox(width: 60),
           IconButton(
-            icon: Icon(
-              Icons.upload,
+            icon: const Icon(
+              Icons.upload, size: 50,
               color: AppColors.lightYellow,
             ),
             onPressed: controller.pickAudioFile,
@@ -77,7 +102,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           IconButton(
             icon: Icon(
               !controller.state.isMusicOn ? Icons.music_note : Icons.music_off,
-              color: AppColors.lightYellow,
+              size: 50,
+              color: !controller.state.isMusicOn ?
+              AppColors.onTertiaryContainer :
+              AppColors.onSecondaryContainer,
             ),
             onPressed: controller.toggleMusic,
           ),
@@ -100,7 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         const SizedBox(height: 20),
         CircleAvatar(
-          radius: 60,
+          radius: 120,
           backgroundColor: Colors.transparent,
           backgroundImage:
               NetworkImage(_avatarService.getCurrentUserAvatarUrl()),
